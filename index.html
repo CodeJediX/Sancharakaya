@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sancharakaya (සංචාරකයා) — Sri Lanka Travel Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-dots" aria-hidden="true"></div>
+    <div class="container hero-inner">
+      <div>
+        <span class="hero-eyebrow">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>
+          SLTDA Tourism Start-Up Competition 2026
+        </span>
+        <h1>Sancharakaya <em>(සංචාරකයා)</em></h1>
+        <p class="hero-sub">
+          A conversational travel companion that plans, protects, and personalizes every independent
+          traveler's route through Sri Lanka — one fair price, one safety tip, one waypoint at a time.
+        </p>
+        <div class="hero-stats">
+          <div class="hero-stat"><strong>6</strong><span>Live modules</span></div>
+          <div class="hero-stat"><strong>21</strong><span>Max trip days</span></div>
+          <div class="hero-stat"><strong>24/7</strong><span>Assistant uptime</span></div>
+        </div>
+      </div>
+
+      <div class="hero-card">
+        <div class="hero-card-label">Sample route · Cultural Triangle → Coast</div>
+        <ul class="hero-route">
+          <li><b>Day 1–2</b> · Sigiriya &amp; Dambulla</li>
+          <li><b>Day 3–4</b> · Kandy &amp; Hill Country</li>
+          <li><b>Day 5–6</b> · Galle &amp; South Coast</li>
+          <li><b>Day 7</b> · Colombo departure</li>
+        </ul>
+      </div>
+    </div>
+
+    <svg class="hero-ridge" viewBox="0 0 1440 90" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M0,60 C180,10 320,80 480,40 C620,6 760,70 900,36 C1040,4 1180,66 1440,26 L1440,90 L0,90 Z" fill="#FBF6EA"/>
+    </svg>
+  </header>
+
+  <div class="nav-wrap">
+    <nav class="container nav">
+      <button class="nav-btn active" data-tab="planner">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M15 9l-2 6-6 2 2-6z"/></svg>
+        Itinerary Planner
+      </button>
+      <button class="nav-btn" data-tab="chat">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.4 8.4 0 01-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.4 8.4 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+        Virtual Assistant
+      </button>
+      <button class="nav-btn" data-tab="prices">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41L11 3.83A2 2 0 009.62 3H4a1 1 0 00-1 1v5.62a2 2 0 00.59 1.41l9.58 9.58a2 2 0 002.82 0l4.6-4.6a2 2 0 000-2.82z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
+        Fair-Price Guide
+      </button>
+      <button class="nav-btn" data-tab="safety">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z"/></svg>
+        Safety Alerts
+      </button>
+      <button class="nav-btn" data-tab="sustainable">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 019.8 6.1C15.5 5 20 5 20 5s0 4.5-1.1 10.2A7 7 0 0111 20z"/><path d="M2 21c0-4 3-8 9-9"/></svg>
+        Sustainable Matching
+      </button>
+      <button class="nav-btn" data-tab="personas">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        Personas
+      </button>
+      <button class="nav-btn" data-tab="roadmap">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22V4a1 1 0 011-1h9l4 4v3"/><path d="M4 15s1.5-1 4-1 4 2 7 2 4-1 4-1"/></svg>
+        Roadmap
+      </button>
+      <button class="nav-btn" data-tab="pitch">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.9L14 20l-3 1-1-3.5"/></svg>
+        Pitch / Demo
+      </button>
+      <button class="nav-btn" data-tab="setup">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 11-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 11-2.83-2.83l.06-.06A1.65 1.65 0 004.6 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 112.83-2.83l.06.06A1.65 1.65 0 009 4.6a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 112.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+        Claude API Setup
+      </button>
+      <button class="nav-btn nav-theme-btn" id="themeToggle" type="button" aria-label="Switch to dark mode">
+        <span aria-hidden="true">◐</span>
+        <span class="theme-label">Dark mode</span>
+      </button>
+    </nav>
+  </div>
+
+  <main class="container">
+    <!-- PLANNER -->
+    <section id="planner">
+      <div class="panel">
+        <span class="eyebrow">Module 01 · Core prototype</span>
+        <h2>AI Itinerary Planner</h2>
+        <p class="muted">
+          Generates a personalized day-by-day route from traveler preferences using a local recommendation
+          engine — and can optionally hand off to the Claude API for richer, freeform planning.
+        </p>
+
+        <div class="grid two">
+          <label>
+            Trip length (days)
+            <input id="days" type="number" min="1" max="21" value="7" />
+          </label>
+
+          <label>
+            Start date
+            <input id="startDate" type="date" />
+          </label>
+
+          <label>
+            Starting location
+            <input id="startLocation" type="text" value="Bandaranaike International Airport (CMB)" placeholder="Airport, hotel, or town" />
+          </label>
+
+          <label>
+            Traveler persona
+            <select id="persona">
+              <option>First-Time Independent Traveler</option>
+              <option>Budget Backpacker</option>
+              <option>Digital Nomad / Slow Traveler</option>
+              <option>Solo Traveler</option>
+            </select>
+          </label>
+
+          <label>
+            Budget style
+            <select id="budget">
+              <option value="budget">Budget</option>
+              <option value="mid" selected>Mid-range</option>
+              <option value="luxury">Luxury</option>
+            </select>
+          </label>
+
+          <label>
+            Pace
+            <select id="pace">
+              <option value="relaxed">Relaxed</option>
+              <option value="balanced" selected>Balanced</option>
+              <option value="active">Active</option>
+            </select>
+          </label>
+
+          <label>
+            Group size
+            <input id="groupSize" type="number" min="1" value="2" />
+          </label>
+
+          <label>
+            Region
+            <select id="region">
+              <option>Auto</option>
+              <option>Cultural Triangle</option>
+              <option>Hill Country</option>
+              <option>South Coast</option>
+              <option>East Coast</option>
+              <option>Colombo &amp; West</option>
+              <option>Wildlife &amp; National Parks</option>
+            </select>
+          </label>
+        </div>
+
+        <fieldset>
+          <legend>Traveler interests</legend>
+          <div class="grid three">
+            <label class="check"><input type="checkbox" class="interest" value="culture" checked /> Culture &amp; heritage</label>
+            <label class="check"><input type="checkbox" class="interest" value="nature" checked /> Nature &amp; scenery</label>
+            <label class="check"><input type="checkbox" class="interest" value="beach" checked /> Beach &amp; coast</label>
+            <label class="check"><input type="checkbox" class="interest" value="wildlife" /> Wildlife</label>
+            <label class="check"><input type="checkbox" class="interest" value="food" checked /> Food</label>
+            <label class="check"><input type="checkbox" class="interest" value="adventure" /> Adventure</label>
+            <label class="check"><input type="checkbox" class="interest" value="wellness" /> Wellness</label>
+            <label class="check"><input type="checkbox" class="interest" value="community" /> Community tourism</label>
+            <label class="check"><input type="checkbox" class="interest" value="photography" /> Photography</label>
+          </div>
+        </fieldset>
+
+        <div class="toolbar">
+          <button class="btn" id="generateBtn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.2L22 12l-7.6 2.8L12 22l-2.4-7.2L2 12l7.6-2.8z"/></svg>
+            Generate itinerary &amp; live route
+          </button>
+          <button class="btn btn-secondary" id="makeTripBtn" type="button">Make My Trip</button>
+          <span id="status" class="status"></span>
+        </div>
+      </div>
+
+      <div id="customTripBuilder" class="panel custom-trip-builder hidden">
+        <div class="section-heading">
+          <div>
+            <div class="section-kicker">CUSTOM ROUTE</div>
+            <h3>Make My Trip</h3>
+          </div>
+          <span class="muted">Choose a destination for each day.</span>
+        </div>
+        <p class="muted">Pick places manually and Sancharakaya will rebuild the route, distance, currency, daily hotels, and map together.</p>
+        <div id="customTripDays" class="custom-trip-days"></div>
+        <div class="toolbar">
+          <button class="btn" id="customGoBtn" type="button">Go — build my route</button>
+          <span id="customTripStatus" class="status"></span>
+        </div>
+      </div>
+
+      <div id="itineraryOutput"></div>
+
+      <div class="footer-note">
+        Prototype note: this is an early-stage demonstrator aligned with Section 4.3 of the proposal.
+        Live booking/payment, IoT crowd sensors, and full partner verification are Phase 2+ items.
+      </div>
+    </section>
+
+    <!-- CHAT -->
+    <section id="chat" class="hidden">
+      <div class="panel">
+        <span class="eyebrow">Module 02 · Always-on</span>
+        <h2>24/7 Multilingual Virtual Assistant</h2>
+        <p class="muted">
+          Ask about prices, scams, transport, weather, food, safety, culture, and itineraries.
+          If Claude API is enabled in the setup tab, this assistant can use a real LLM.
+        </p>
+
+        <div style="margin-bottom:14px;">
+          <span class="pill" id="chatStatus">Offline prototype mode</span>
+        </div>
+
+        <div class="chat-box" id="chatLog"></div>
+
+        <div class="chips">
+          <button class="chip-btn" data-q="What is a fair tuk-tuk price?">Tuk-tuk price</button>
+          <button class="chip-btn" data-q="How can I avoid scams?">Avoid scams</button>
+          <button class="chip-btn" data-q="Best time to visit the east coast?">East coast season</button>
+          <button class="chip-btn" data-q="Create a 7-day itinerary">7-day itinerary</button>
+          <button class="chip-btn" data-q="What food should I try?">Food</button>
+          <button class="chip-btn" data-q="Is it safe to travel solo?">Solo safety</button>
+        </div>
+
+        <form id="chatForm" class="chat-form">
+          <input id="chatInput" type="text" placeholder="Ask Sancharakaya (සංචාරකයා) anything about Sri Lanka travel..." autocomplete="off" />
+          <button class="btn" type="submit">
+            Send
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <!-- PRICES -->
+    <section id="prices" class="hidden">
+      <div class="panel">
+        <span class="eyebrow">Module 03 · Anti-scam layer</span>
+        <h2>Fair-Price Guide</h2>
+        <p class="muted">
+          A real-time reference layer to help travelers recognize fair local rates and avoid overcharging.
+        </p>
+
+        <input id="priceFilter" type="text" placeholder="Search prices... e.g. tuk-tuk, train, guide" />
+
+        <div style="height:16px"></div>
+
+        <div class="table-wrap">
+          <table id="priceTable">
+            <thead>
+              <tr>
+                <th>Item / service</th>
+                <th>Fair range</th>
+                <th>Typical tourist overcharge</th>
+                <th>Advice</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SAFETY -->
+    <section id="safety" class="hidden">
+      <div class="panel">
+        <span class="eyebrow">Module 04 · Trust &amp; safety</span>
+        <h2>Safety &amp; Scam-Alert System</h2>
+
+        <div class="emergency">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z"/></svg>
+          Emergency contacts: Police 119 · Tourist Police 1912 · Ambulance 110 · Fire 111
+        </div>
+
+        <div id="safetyGrid" class="grid two"></div>
+      </div>
+    </section>
+
+    <!-- SUSTAINABILITY -->
+    <section id="sustainable" class="hidden">
+      <div class="panel">
+        <span class="eyebrow">Module 05 · SLTDA impact</span>
+        <h2>Sustainable Tourism Matching</h2>
+        <p class="muted">
+          This module demonstrates how Sancharakaya (සංචාරකයා) can redistribute visitors toward community-based,
+          eco-certified, and lesser-known experiences.
+        </p>
+
+        <div id="sustainableGrid" class="grid two"></div>
+      </div>
+    </section>
+
+    <!-- PERSONAS -->
+    <section id="personas" class="hidden">
+      <div class="panel">
+        <span class="eyebrow">Section 8 · Target market</span>
+        <h2>Target Market &amp; User Personas</h2>
+        <p class="muted">
+          Prototype personalization is influenced by these target personas from Section 8 of the proposal.
+        </p>
+        <div id="personaGrid" class="grid two"></div>
+      </div>
+    </section>
+
+    <!-- ROADMAP -->
+    <section id="roadmap" class="hidden">
+      <div class="panel">
+        <span class="eyebrow">Section 9 · Build-out plan</span>
+        <h2>Implementation Roadmap</h2>
+        <p class="muted">
+          A realistic staged build-out as described in Section 9 of the proposal.
+        </p>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Phase</th>
+                <th>Timeline</th>
+                <th>Key deliverables</th>
+              </tr>
+            </thead>
+            <tbody id="roadmapBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- PITCH -->
+    <section id="pitch" class="hidden">
+      <div class="panel">
+        <span class="eyebrow">For the judging panel</span>
+        <h2>Pitch / Demo Package</h2>
+
+        <div class="toolbar">
+          <button class="btn" id="runDemoBtn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Run 60-second demo
+          </button>
+          <span id="demoStatus" class="status"></span>
+        </div>
+
+        <div class="split" style="margin-top:20px;">
+          <div>
+            <h3>Executive summary</h3>
+            <p>
+              Sancharakaya (සංචාරකයා) is a conversational, AI-powered travel companion designed specifically for individual tourists
+              exploring Sri Lanka. It combines an LLM-driven itinerary planner, a 24/7 multilingual assistant,
+              a predictive recommendation engine, a scam and safety alert system, and a sustainable-tourism matching tool
+              into a single web-based platform.
+            </p>
+
+            <h3>Problem</h3>
+            <ul>
+              <li>Fragmented trip-planning information</li>
+              <li>Overcharging and scams</li>
+              <li>Language and cultural gaps</li>
+              <li>Generic recommendations not tailored to Sri Lanka</li>
+              <li>Overcrowding at major sites</li>
+              <li>Safety uncertainty for independent travelers</li>
+            </ul>
+
+            <h3>Solution modules</h3>
+            <ul>
+              <li>AI Itinerary Planner</li>
+              <li>24/7 Multilingual Virtual Assistant</li>
+              <li>Predictive Recommendation Engine</li>
+              <li>Fair-Price Guide</li>
+              <li>Safety &amp; Scam-Alert System</li>
+              <li>Sustainable Tourism Matching</li>
+            </ul>
+
+            <h3>Technology</h3>
+            <ul>
+              <li>LLM core via Anthropic Claude API</li>
+              <li>Retrieval-Augmented Generation using a Sri Lanka knowledge base</li>
+              <li>Predictive analytics for seasonality and crowd flow</li>
+              <li>NLP for multilingual chat and intent detection</li>
+            </ul>
+
+            <h3>Business model</h3>
+            <ul>
+              <li>Freemium subscription</li>
+              <li>Booking commission</li>
+              <li>B2B / DMO licensing</li>
+              <li>Verified partner listings</li>
+            </ul>
+
+            <h3>Why this matters for SLTDA</h3>
+            <ul>
+              <li>Enhances visitor experience</li>
+              <li>Improves operational efficiency</li>
+              <li>Supports sustainability</li>
+              <li>Promotes digital transformation</li>
+              <li>Generates employment opportunities</li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>Demo script for panel</h3>
+            <ol>
+              <li>Start with the problem: independent travelers face fragmented info, scams, and safety uncertainty.</li>
+              <li>Show the AI Itinerary Planner tab.</li>
+              <li>Select persona: First-Time Independent Traveler.</li>
+              <li>Set 7 days, mid-range budget, balanced pace.</li>
+              <li>Generate itinerary and point out realistic day planning.</li>
+              <li>Show Fair-Price Guide as anti-scam trust layer.</li>
+              <li>Show Safety Alerts for real-time reassurance.</li>
+              <li>Show Sustainable Tourism Matching as SLTDA impact layer.</li>
+              <li>Close with roadmap and business model.</li>
+            </ol>
+
+            <h3>One-line pitch</h3>
+            <p>
+              <strong>Sancharakaya (සංචාරකයා) gives every independent traveler to Sri Lanka the confidence, personalization,
+              and trusted local insight of a great human travel agent — instantly, in their own language, at any hour.</strong>
+            </p>
+
+            <h3>Application summary</h3>
+            <div class="card">
+              <strong>Start-up name:</strong> Sancharakaya (සංචාරකයා)<br />
+              <strong>Stage:</strong> Pre-registration student-founded concept<br />
+              <strong>Founder:</strong> Pamiya<br />
+              <strong>Technology:</strong> AI/ML, chatbot, data analytics, smart mobility<br />
+              <strong>Revenue:</strong> Freemium + commissions + B2B licensing + verified listings
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SETUP -->
+    <section id="setup" class="hidden">
+      <div class="panel">
+        <span class="eyebrow">Optional</span>
+        <h2>Claude API Setup</h2>
+        <p class="muted">
+          Optional: connect the assistant to a real Claude model. If no API key is entered, the prototype remains fully functional
+          using the offline recommendation engine.
+        </p>
+
+        <div class="grid two">
+          <label>
+            Use Claude API when available
+            <input id="useClaude" type="checkbox" />
+          </label>
+
+          <label>
+            Model
+            <input id="model" type="text" value="claude-3-5-sonnet-latest" />
+          </label>
+        </div>
+
+        <div class="toolbar">
+          <button class="btn" id="saveSettingsBtn">Save settings</button>
+          <span id="setupStatus" class="status"></span>
+        </div>
+
+        <div style="margin-top:20px;" class="card">
+          <strong>Secure API architecture</strong>
+          <p style="margin-bottom:0;">
+            The browser never receives an Anthropic API key. When enabled, requests go to
+            <code>/api/chat</code>, where a server-side proxy reads <code>ANTHROPIC_API_KEY</code>
+            from environment variables. Without that proxy, Sancharakaya safely remains in offline mode.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <strong>Sancharakaya (සංචාරකයා)</strong> — competition prototype for the SLTDA Tourism Start-Up Competition 2026
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/planner.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/chat.js"></script>
+  <script src="js/features.js"></script>
+  <script>
+    init();
+  </script>
+</body>
+</html>
