@@ -1,4 +1,4 @@
-const CACHE="sancharakaya-gemini-customer-v2";
+const CACHE="sancharakaya-gemini-customer-v5";
 const ASSETS=["./","index.html","css/app.css","js/config.js","js/app.js","manifest.webmanifest","assets/icon.svg"];
 self.addEventListener("install",event=>{self.skipWaiting();event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)))});
 self.addEventListener("activate",event=>event.waitUntil(Promise.all([

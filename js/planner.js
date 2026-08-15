@@ -8,8 +8,10 @@
       bindPlanner();
       bindChat();
       bindPrices();
+      bindSafetyTools();
       bindSetup();
       bindTheme();
+      bindMotionEffects();
       renderPrices();
       renderSafety();
       renderSustainability();
@@ -27,7 +29,7 @@
     }
 
     function bindTabs() {
-      document.querySelectorAll(".nav-btn").forEach(btn => {
+      document.querySelectorAll(".nav-btn[data-tab]").forEach(btn => {
         btn.addEventListener("click", () => activateTab(btn.dataset.tab));
       });
 

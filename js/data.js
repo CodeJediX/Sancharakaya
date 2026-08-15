@@ -234,38 +234,82 @@
       {
         region: "All Sri Lanka",
         level: "Common",
+        category: "Transport",
+        icon: "TUK",
         title: "Overcharging / unmetered transport",
-        guidance: "Agree fares before travel, use ride-hailing apps in cities, and ask hotels for official taxi services."
+        guidance: "Agree fares before travel, use ride-hailing apps in cities, and ask hotels for official taxi services.",
+        watchFor: "No meter, unclear route, pressure to pay before the ride, or sudden extra charges.",
+        action: "Ask for the final fare in LKR before getting in. If it feels high, compare with the Fair-Price Guide or use a ride app."
       },
       {
         region: "Cultural Triangle",
         level: "Moderate",
+        category: "Guides",
+        icon: "ID",
         title: "Unofficial guides around heritage sites",
-        guidance: "Use licensed guides only and avoid offers of special shortcuts or false official access."
+        guidance: "Use licensed guides only and avoid offers of special shortcuts or false official access.",
+        watchFor: "Claims like special entrance, private shortcut, ticket counter closed, or mandatory guide.",
+        action: "Buy tickets at official counters and ask to see guide identification before accepting help."
       },
       {
         region: "Hill Country",
         level: "Weather",
+        category: "Weather",
+        icon: "RAIN",
         title: "Sudden rain and leeches on trails",
-        guidance: "Carry rain protection, wear sturdy shoes, and use local guides for remote hikes."
+        guidance: "Carry rain protection, wear sturdy shoes, and use local guides for remote hikes.",
+        watchFor: "Fast-changing fog, slippery railway tracks, isolated trails, and late-afternoon rain.",
+        action: "Start hikes early, check weather before leaving, and avoid remote trails after dark."
       },
       {
         region: "South Coast",
         level: "Seasonal",
+        category: "Beach",
+        icon: "SEA",
         title: "Strong sea conditions and rip currents",
-        guidance: "Swim in flagged safe zones, check local warnings, and avoid alcohol before swimming."
+        guidance: "Swim in flagged safe zones, check local warnings, and avoid alcohol before swimming.",
+        watchFor: "Red flags, rough surf, empty beaches with no lifeguard, or locals warning against swimming.",
+        action: "Use lifeguarded beaches, ask your stay about current conditions, and do not swim after drinking."
       },
       {
         region: "East Coast",
         level: "Seasonal",
+        category: "Transport",
+        icon: "ROAD",
         title: "Surf conditions and remote roads at night",
-        guidance: "Use trusted transport after dark and check surf conditions with reputable instructors."
+        guidance: "Use trusted transport after dark and check surf conditions with reputable instructors.",
+        watchFor: "Long night transfers, informal surf lessons, poor lighting, and isolated beach roads.",
+        action: "Plan inter-town travel in daylight and choose surf instructors recommended by your accommodation."
       },
       {
         region: "Wildlife parks",
         level: "Safety",
+        category: "Wildlife",
+        icon: "PARK",
         title: "Wildlife proximity",
-        guidance: "Stay inside vehicles unless in designated areas and always follow ranger instructions."
+        guidance: "Stay inside vehicles unless in designated areas and always follow ranger instructions.",
+        watchFor: "Drivers getting too close, feeding wildlife, standing in vehicles, or leaving marked routes.",
+        action: "Choose responsible safari operators and tell the driver you prefer safe distance over close photos."
+      },
+      {
+        region: "Markets & shops",
+        level: "Common",
+        category: "Shopping",
+        icon: "SHOP",
+        title: "Gem, spice, and souvenir pressure sales",
+        guidance: "Compare prices, avoid rushed purchases, and be careful with claims about rare antiques or investment gems.",
+        watchFor: "Limited-time deals, friend discount stories, forced shop stops, or no written receipt.",
+        action: "Walk away if pressured. Buy from established stores and keep receipts for higher-value items."
+      },
+      {
+        region: "All Sri Lanka",
+        level: "Important",
+        category: "Tickets",
+        icon: "PASS",
+        title: "Fake ticket help and closed-counter claims",
+        guidance: "Use official counters, official websites, or trusted accommodation support for tickets and transport bookings.",
+        watchFor: "Someone saying the office is closed, tickets are sold out, or only they can get access.",
+        action: "Check the official counter yourself before paying a third party."
       }
     ];
 
