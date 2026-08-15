@@ -9,16 +9,15 @@
       bindChat();
       bindPrices();
       bindSetup();
-      bindDemo();
       bindTheme();
       renderPrices();
       renderSafety();
       renderSustainability();
-      renderPersonas();
-      renderRoadmap();
       loadClaudeSettings();
       updateChatStatus();
-      addMessage("bot", "Hello! I am Sancharakaya (සංචාරකයා). I can help with itineraries, fair prices, safety, transport, seasons, food, and sustainable travel in Sri Lanka.");
+      if (document.getElementById("chatLog")) {
+        addMessage("bot", "Hello! I am Sancharakaya (සංචාරකයා). I can help with itineraries, fair prices, safety, transport, seasons, food, and sustainable travel in Sri Lanka.");
+      }
     }
 
     function setDefaultDate() {
@@ -30,6 +29,13 @@
     function bindTabs() {
       document.querySelectorAll(".nav-btn").forEach(btn => {
         btn.addEventListener("click", () => activateTab(btn.dataset.tab));
+      });
+
+      document.querySelectorAll("[data-jump-tab]").forEach(btn => {
+        btn.addEventListener("click", () => {
+          activateTab(btn.dataset.jumpTab);
+          document.getElementById(btn.dataset.jumpTab)?.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
       });
     }
 
@@ -322,7 +328,7 @@
 
       output.innerHTML = `
         <div class="panel">
-          <h3>Generated prototype itinerary</h3>
+          <h3>Your personalized itinerary</h3>
           <p class="muted"><strong>Persona:</strong> ${result.persona}</p>
           <p class="muted"><strong>Starting location:</strong> ${params.startLocation}</p>
           <p class="muted"><strong>Route:</strong> ${result.route.join(" -> ")}</p>
@@ -365,7 +371,7 @@
             <span id="hotelSearchStatus" class="status">Searching current stays...</span>
           </div>
           <p class="muted hotel-data-note">
-            <strong>How hotel data is gathered:</strong> Sancharakaya sends the selected location and dates to the server-side live-search connector. When Gemini is configured, it returns current hotel candidates and their source links; otherwise, verified booking-source search links remain available without exposing any API key in the browser.
+            <strong>Hotel search guidance:</strong> Sancharakaya shows stay options and booking-source links for each overnight area. Prices and availability can change quickly, so confirm the final rate, taxes, cancellation terms, and exact location before booking.
           </p>
           <div class="toolbar hotel-filters">
             <label>Max nightly price (USD)
@@ -451,7 +457,7 @@
       });
 
       document.getElementById("saveBtn").addEventListener("click", () => {
-        localStorage.setItem("sriGuidePrototype", JSON.stringify({ result, params }));
+        localStorage.setItem("sriGuideTrip", JSON.stringify({ result, params }));
         setActionStatus("Itinerary saved in this browser.");
       });
 
@@ -725,7 +731,7 @@
 
     function itineraryToText(result, params) {
       return [
-        "Sancharakaya (සංචාරකයා) Prototype Itinerary",
+        "Sancharakaya (සංචාරකයා) Travel Itinerary",
         `Persona: ${params.persona}`,
         `Trip length: ${params.days} days | Budget: ${params.budget} | Pace: ${params.pace} | Group: ${params.group}`,
         `Route: ${result.route.join(" -> ")}`,

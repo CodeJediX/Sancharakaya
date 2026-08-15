@@ -1,0 +1,11 @@
+const assert=require("node:assert");
+const {places,searchPlaces,buildItinerary,budgetFromUserInput}=require("./kb");
+assert(places.length>=30);
+const culture=searchPlaces({interests:["culture","photography"],limit:4});assert(culture.matches.length===4);
+const hidden=searchPlaces({interests:["nature"],hidden_gems:true,limit:5});assert(hidden.matches.some(x=>x.hidden_gem));
+const trip=buildItinerary({days:4,starting_location:"Colombo",interests:["culture","photography"]});assert(trip.plan.length===4);
+const budget=budgetFromUserInput({days:4,group_size:2,daily_budget_lkr:15000});assert(budget.trip_budget_envelope===120000);
+console.log("Sancharakaya self-test passed.");
+console.log(`Knowledge base: ${places.length} places`);
+console.log(`Culture results: ${culture.matches.map(x=>x.name).join(", ")}`);
+console.log(`Sample route: ${trip.route.join(" -> ")}`);

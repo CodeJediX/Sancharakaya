@@ -1,5 +1,6 @@
     function bindChat() {
       const form = document.getElementById("chatForm");
+      if (!form) return;
 
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
@@ -31,7 +32,7 @@
       }
 
       if (claudeResult && claudeResult.error) {
-        addMessage("bot", `Claude API error: ${claudeResult.error}. Falling back to offline prototype mode.`);
+        addMessage("bot", `Assistant service error: ${claudeResult.error}. I can still help with built-in Sri Lanka travel guidance.`);
       }
 
       addMessage("bot", getOfflineResponse(value));
@@ -39,6 +40,7 @@
 
     function addMessage(sender, html) {
       const log = document.getElementById("chatLog");
+      if (!log) return;
       const div = document.createElement("div");
       div.className = `msg ${sender}`;
       div.innerHTML = html;
@@ -117,7 +119,7 @@
       }
 
       if (lastResult) {
-        return `Your current prototype itinerary has ${lastResult.plan.length} days and follows this route: ${lastResult.route.join(" -> ")}. You can copy, print, or save it from the AI Itinerary Planner tab.`;
+        return `Your current itinerary has ${lastResult.plan.length} days and follows this route: ${lastResult.route.join(" -> ")}. You can copy, print, or save it from the AI Itinerary Planner tab.`;
       }
 
       return "I can help with itineraries, fair pricing, safety alerts, transport, weather windows, food recommendations, and sustainable travel options. Try asking: What is a fair tuk-tuk price? or Create a 7-day itinerary.";
@@ -187,5 +189,5 @@
       - Use local guides and small guesthouses.<br />
       - Avoid attractions that exploit wildlife.<br />
       - Spread your itinerary beyond overcrowded hotspots.<br /><br />
-      Open the Sustainable Matching tab to see prototype recommendations.`;
+      Open the Sustainable Matching tab to see responsible travel recommendations.`;
     }

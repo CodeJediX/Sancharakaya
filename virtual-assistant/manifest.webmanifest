@@ -1,0 +1,16 @@
+{
+  "name": "Sancharakaya \u2014 Sri Lanka AI Travel Agent",
+  "short_name": "Sancharakaya",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f6f1e7",
+  "theme_color": "#12382f",
+  "icons": [
+    {
+      "src": "assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

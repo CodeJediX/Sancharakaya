@@ -1,0 +1,14 @@
+{
+  "name": "sancharakaya-full-ai-agent",
+  "version": "1.2.0",
+  "private": true,
+  "description": "Google Gemini-powered agentic Sri Lanka tourism assistant with grounded retrieval, live tools, memory and itinerary planning.",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "test": "node server/self-test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

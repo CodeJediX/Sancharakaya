@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#12382f">
+  <title>Sancharakaya - Sri Lanka AI Travel Agent</title>
+  <meta name="description" content="Sri Lanka travel assistant with grounded destination knowledge, live weather, itinerary tools, maps, and travel actions.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div id="preloader" class="preloader">
+    <div class="preloader-mark">SK</div>
+    <div class="preloader-copy"><strong>Sancharakaya</strong><span>Preparing your Sri Lanka guide...</span></div>
+  </div>
+
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="Sancharakaya home">
+      <span class="brand-mark">SK</span>
+      <span><strong>Sancharakaya</strong><small>AI Travel Agent - Sri Lanka</small></span>
+    </a>
+    <div class="top-actions">
+      <span id="backendBadge" class="status-badge loading">Checking travel assistant...</span>
+      <button id="themeBtn" class="icon-btn" type="button" title="Toggle theme">Mode</button>
+    </div>
+  </header>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="guide">AI Guide</button>
+    <button class="tab" data-tab="itinerary">Itinerary</button>
+    <button class="tab" data-tab="explore">Explore</button>
+    <button class="tab" data-tab="saved">Saved</button>
+  </nav>
+
+  <main>
+    <section id="guide" class="page active">
+      <div class="guide-layout">
+        <aside class="profile-panel glass">
+          <div class="panel-title">
+            <div><span class="eyebrow">TRIP MEMORY</span><h2>Your trip</h2></div>
+            <button id="clearMemoryBtn" class="text-btn" type="button">Reset</button>
+          </div>
+          <label>Starting location<input id="profileStart" type="text" placeholder="e.g. Colombo or CMB Airport"></label>
+          <div class="two-col">
+            <label>Days<input id="profileDays" type="number" min="1" max="21" value="5"></label>
+            <label>Group<select id="profileGroup"><option value="">Not set</option><option value="solo">Solo</option><option value="couple">Couple</option><option value="family">Family</option><option value="friends">Friends</option></select></label>
+          </div>
+          <div class="two-col">
+            <label>Group size<input id="profileGroupSize" type="number" min="1" max="50" value="2"></label>
+            <label>Language<select id="profileLanguage"><option>English</option><option>Sinhala</option><option>Tamil</option></select></label>
+          </div>
+          <label>Daily budget / person (LKR)<input id="profileBudget" type="number" min="0" step="1000" placeholder="Optional"></label>
+          <fieldset>
+            <legend>Interests</legend>
+            <div class="interest-grid">
+              <label><input type="checkbox" class="interest" value="culture"> Culture</label>
+              <label><input type="checkbox" class="interest" value="nature"> Nature</label>
+              <label><input type="checkbox" class="interest" value="beach"> Beach</label>
+              <label><input type="checkbox" class="interest" value="wildlife"> Wildlife</label>
+              <label><input type="checkbox" class="interest" value="food"> Food</label>
+              <label><input type="checkbox" class="interest" value="adventure"> Adventure</label>
+              <label><input type="checkbox" class="interest" value="photography"> Photography</label>
+              <label><input type="checkbox" class="interest" value="history"> History</label>
+            </div>
+          </fieldset>
+          <label class="switch-row"><span><strong>Hidden gems</strong><small>Prefer lesser-known places</small></span><input id="profileHidden" type="checkbox"></label>
+          <div id="memoryPills" class="memory-pills"></div>
+        </aside>
+
+        <section class="chat-panel">
+          <div class="hero-card">
+            <div>
+              <span class="eyebrow">AI TOURISM ASSISTANT</span>
+              <h1>Explore Sri Lanka with a guide that can <em>plan, check and adapt.</em></h1>
+              <p>Grounded destination knowledge, live weather, itinerary tools, maps, food and stay discovery, train guidance, ride links, and session memory.</p>
+            </div>
+            <div class="hero-orbit" aria-hidden="true"><span>Places</span><span>Weather</span><span>Maps</span><span>Memory</span></div>
+          </div>
+
+          <div class="quick-prompts">
+            <button data-prompt="I have 4 days from Colombo. We are a couple and love culture and photography. Build the best route.">4-day culture route</button>
+            <button data-prompt="Recommend hidden gems for nature and photography in Sri Lanka.">Hidden gems</button>
+            <button data-prompt="What is the weather like in Ella for the next few days?">Ella weather</button>
+            <button data-prompt="I want to go to Kandy by train. Help me with the safest next steps.">Train to Kandy</button>
+          </div>
+
+          <div id="chatLog" class="chat-log" aria-live="polite"></div>
+          <div id="resultDeck" class="result-deck">
+            <div id="weatherDeck" class="weather-deck"></div>
+            <div id="placeDeck" class="place-deck"></div>
+            <div id="nearbyDeck" class="nearby-deck"></div>
+            <div id="actionDeck" class="action-deck"></div>
+          </div>
+
+          <form id="chatForm" class="composer">
+            <textarea id="chatInput" rows="2" placeholder="Ask Sancharakaya anything about your Sri Lanka trip..." required></textarea>
+            <div class="composer-actions">
+              <span class="composer-hint">Live data is checked when weather, maps, or nearby places are needed.</span>
+              <button id="sendBtn" class="primary-btn" type="submit">Send</button>
+            </div>
+          </form>
+        </section>
+
+        <aside class="map-panel glass">
+          <div class="panel-title"><div><span class="eyebrow">LIVE CONTEXT</span><h2>Trip map</h2></div></div>
+          <div id="map"></div>
+          <div id="mapEmpty" class="map-empty">Recommended places will appear here.</div>
+          <div class="trust-box"><strong>Grounded guidance</strong><p>Destination facts come from curated Sri Lanka records. Weather and nearby listings use live sources when available. Always verify official fares, opening hours, tickets, and travel rules before departure.</p></div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="itinerary" class="page">
+      <div class="section-shell">
+        <div class="section-head">
+          <div><span class="eyebrow">MULTI-DAY PLANNER</span><h1>Your itinerary</h1></div>
+          <div class="row-actions">
+            <button id="generatePlanBtn" class="primary-btn">Generate with assistant</button>
+            <button id="shareTripBtn" class="secondary-btn">Copy share link</button>
+            <button id="printTripBtn" class="secondary-btn">Print / Save PDF</button>
+          </div>
+        </div>
+        <div id="itineraryEmpty" class="empty-state"><span class="empty-icon">No route</span><h3>No itinerary yet</h3><p>Set your trip profile or ask the AI Guide to build a route.</p></div>
+        <div id="itineraryView" class="timeline"></div>
+        <div id="budgetCard" class="budget-card hidden"></div>
+      </div>
+    </section>
+
+    <section id="explore" class="page">
+      <div class="section-shell">
+        <div class="section-head">
+          <div><span class="eyebrow">CURATED DESTINATIONS</span><h1>Explore Sri Lanka places</h1></div>
+          <div class="explore-search"><input id="exploreInput" type="search" placeholder="culture, wildlife, Ella, beaches..."><button id="exploreBtn" class="primary-btn">Search</button></div>
+        </div>
+        <p class="section-lede">Browse destination records with cultural context, visit fit, images, map links, and weather prompts.</p>
+        <div id="exploreGrid" class="explore-grid"></div>
+      </div>
+    </section>
+
+    <section id="saved" class="page">
+      <div class="section-shell">
+        <div class="section-head"><div><span class="eyebrow">SAVED FOR LATER</span><h1>Saved place cards</h1></div><button id="clearSavedBtn" class="secondary-btn">Clear saved</button></div>
+        <p class="section-lede">Saved destination cards stay in your browser so useful place notes remain easy to find.</p>
+        <div id="savedGrid" class="explore-grid"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer><strong>Sancharakaya</strong><span>AI-powered travel intelligence for Sri Lanka</span></footer>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="js/config.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

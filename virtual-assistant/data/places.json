@@ -1,0 +1,1607 @@
+[
+  {
+    "id": "colombo",
+    "name": "Colombo",
+    "region": "Colombo & West",
+    "district": "Colombo",
+    "coordinates": {
+      "lat": 6.9271,
+      "lng": 79.8612
+    },
+    "categories": [
+      "city",
+      "culture",
+      "food",
+      "shopping",
+      "history"
+    ],
+    "vibes": [
+      "food",
+      "culture",
+      "nightlife",
+      "first-time"
+    ],
+    "hidden_gem": false,
+    "summary": "Sri Lanka’s commercial capital and a practical arrival/departure base with markets, museums, temples, colonial-era architecture and a growing food scene.",
+    "heritage_culture": "Colombo reflects multiple periods of Sri Lankan urban history and a mix of Buddhist, Hindu, Muslim and Christian communities.",
+    "best_time_of_day": "Late afternoon and evening",
+    "visit_duration_hours": "4–8",
+    "etiquette": [
+      "Respect local rules, religious practice and private spaces.",
+      "Keep the site clean and follow posted guidance."
+    ],
+    "safety": [
+      "Check local conditions before outdoor activities.",
+      "Use reputable operators for paid activities."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": true,
+    "nearest_station": "Colombo Fort",
+    "sources": [
+      {
+        "label": "Sri Lanka Tourism",
+        "url": "https://www.srilanka.travel/"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "negombo",
+    "name": "Negombo",
+    "region": "Colombo & West",
+    "district": "Gampaha",
+    "coordinates": {
+      "lat": 7.2083,
+      "lng": 79.8358
+    },
+    "categories": [
+      "beach",
+      "city",
+      "food",
+      "culture"
+    ],
+    "vibes": [
+      "relaxation",
+      "food",
+      "arrival-day"
+    ],
+    "hidden_gem": false,
+    "summary": "A coastal city close to Bandaranaike International Airport, known for its lagoon, fishing culture and beach strip.",
+    "heritage_culture": "Negombo’s coastal identity was shaped by fishing communities and successive colonial periods.",
+    "best_time_of_day": "Late afternoon",
+    "visit_duration_hours": "3–6",
+    "etiquette": [
+      "Respect local rules, religious practice and private spaces.",
+      "Keep the site clean and follow posted guidance."
+    ],
+    "safety": [
+      "Check local conditions before outdoor activities.",
+      "Use reputable operators for paid activities."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": true,
+    "nearest_station": "Negombo",
+    "sources": [
+      {
+        "label": "Sri Lanka Tourism",
+        "url": "https://www.srilanka.travel/"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "sigiriya",
+    "name": "Ancient City of Sigiriya",
+    "region": "Cultural Triangle",
+    "district": "Matale",
+    "coordinates": {
+      "lat": 7.957,
+      "lng": 80.7603
+    },
+    "categories": [
+      "heritage",
+      "history",
+      "architecture",
+      "photography",
+      "hiking"
+    ],
+    "vibes": [
+      "culture",
+      "history",
+      "photography",
+      "adventure"
+    ],
+    "hidden_gem": false,
+    "summary": "A monumental rock citadel and archaeological landscape built around a dramatic granite outcrop.",
+    "heritage_culture": "Associated with King Kassapa I, Sigiriya is renowned for its palace remains, water gardens, frescoes and lion-gateway approach.",
+    "best_time_of_day": "Early morning",
+    "visit_duration_hours": "2.5–4",
+    "etiquette": [
+      "Do not touch paintings or archaeological surfaces.",
+      "Follow site barriers and signs.",
+      "Carry water and sun protection."
+    ],
+    "safety": [
+      "Expect steep stairs and exposed sections.",
+      "Avoid the hottest part of the day when possible."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": false,
+    "nearest_station": null,
+    "sources": [
+      {
+        "label": "UNESCO — Ancient City of Sigiriya",
+        "url": "https://whc.unesco.org/en/list/202"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "dambulla",
+    "name": "Rangiri Dambulla Cave Temple",
+    "region": "Cultural Triangle",
+    "district": "Matale",
+    "coordinates": {
+      "lat": 7.8567,
+      "lng": 80.6492
+    },
+    "categories": [
+      "heritage",
+      "religion",
+      "art",
+      "history"
+    ],
+    "vibes": [
+      "culture",
+      "history",
+      "spiritual",
+      "photography"
+    ],
+    "hidden_gem": false,
+    "summary": "A major Buddhist cave-temple complex containing extensive mural paintings and religious statuary.",
+    "heritage_culture": "The site preserves a long living pilgrimage tradition and layers of Buddhist art and patronage.",
+    "best_time_of_day": "Morning",
+    "visit_duration_hours": "1.5–3",
+    "etiquette": [
+      "Dress modestly at shrine areas.",
+      "Remove footwear where required.",
+      "Do not touch murals or statues."
+    ],
+    "safety": [
+      "Check local conditions before outdoor activities.",
+      "Use reputable operators for paid activities."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": false,
+    "nearest_station": null,
+    "sources": [
+      {
+        "label": "UNESCO — Rangiri Dambulla Cave Temple",
+        "url": "https://whc.unesco.org/en/list/561"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "polonnaruwa",
+    "name": "Ancient City of Polonnaruwa",
+    "region": "Cultural Triangle",
+    "district": "Polonnaruwa",
+    "coordinates": {
+      "lat": 7.9403,
+      "lng": 81.0188
+    },
+    "categories": [
+      "heritage",
+      "history",
+      "archaeology",
+      "cycling"
+    ],
+    "vibes": [
+      "culture",
+      "history",
+      "photography",
+      "active"
+    ],
+    "hidden_gem": false,
+    "summary": "The monumental remains of Sri Lanka’s medieval capital are spread across a large archaeological zone.",
+    "heritage_culture": "Royal, religious and hydraulic structures illustrate the importance of Polonnaruwa in medieval Sri Lankan history.",
+    "best_time_of_day": "Early morning",
+    "visit_duration_hours": "4–7",
+    "etiquette": [
+      "Dress respectfully at sacred monuments.",
+      "Follow photography guidance around Buddha images.",
+      "Stay on permitted paths."
+    ],
+    "safety": [
+      "Check local conditions before outdoor activities.",
+      "Use reputable operators for paid activities."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": true,
+    "nearest_station": "Polonnaruwa",
+    "sources": [
+      {
+        "label": "UNESCO — Ancient City of Polonnaruwa",
+        "url": "https://whc.unesco.org/en/list/201"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "anuradhapura",
+    "name": "Sacred City of Anuradhapura",
+    "region": "Cultural Triangle",
+    "district": "Anuradhapura",
+    "coordinates": {
+      "lat": 8.3114,
+      "lng": 80.4037
+    },
+    "categories": [
+      "heritage",
+      "religion",
+      "history",
+      "archaeology"
+    ],
+    "vibes": [
+      "culture",
+      "history",
+      "spiritual",
+      "photography"
+    ],
+    "hidden_gem": false,
+    "summary": "One of Sri Lanka’s ancient capitals, with stupas, monasteries, reservoirs and active Buddhist pilgrimage sites.",
+    "heritage_culture": "Anuradhapura was a major political and religious centre for centuries and remains a living sacred landscape.",
+    "best_time_of_day": "Early morning or late afternoon",
+    "visit_duration_hours": "5–8",
+    "etiquette": [
+      "Cover shoulders and knees at sacred sites.",
+      "Remove hats and footwear where required.",
+      "Be quiet around worshippers."
+    ],
+    "safety": [
+      "Check local conditions before outdoor activities.",
+      "Use reputable operators for paid activities."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": true,
+    "nearest_station": "Anuradhapura",
+    "sources": [
+      {
+        "label": "UNESCO — Sacred City of Anuradhapura",
+        "url": "https://whc.unesco.org/en/list/200"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "mihintale",
+    "name": "Mihintale",
+    "region": "Cultural Triangle",
+    "district": "Anuradhapura",
+    "coordinates": {
+      "lat": 8.35,
+      "lng": 80.5167
+    },
+    "categories": [
+      "heritage",
+      "religion",
+      "hiking",
+      "history"
+    ],
+    "vibes": [
+      "culture",
+      "spiritual",
+      "photography",
+      "hidden-gem"
+    ],
+    "hidden_gem": true,
+    "summary": "A hilltop Buddhist pilgrimage complex near Anuradhapura with ancient monastic remains and viewpoints.",
+    "heritage_culture": "Mihintale is traditionally associated with the introduction of Buddhism to Sri Lanka.",
+    "best_time_of_day": "Early morning or sunset",
+    "visit_duration_hours": "2–4",
+    "etiquette": [
+      "Respect local rules, religious practice and private spaces.",
+      "Keep the site clean and follow posted guidance."
+    ],
+    "safety": [
+      "Check local conditions before outdoor activities.",
+      "Use reputable operators for paid activities."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": false,
+    "nearest_station": null,
+    "sources": [
+      {
+        "label": "Sri Lanka Tourism",
+        "url": "https://www.srilanka.travel/"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "yapahuwa",
+    "name": "Yapahuwa Rock Fortress",
+    "region": "Cultural Triangle",
+    "district": "Kurunegala",
+    "coordinates": {
+      "lat": 7.8178,
+      "lng": 80.3123
+    },
+    "categories": [
+      "heritage",
+      "history",
+      "architecture",
+      "hiking"
+    ],
+    "vibes": [
+      "history",
+      "photography",
+      "hidden-gem",
+      "adventure"
+    ],
+    "hidden_gem": true,
+    "summary": "A dramatic medieval rock-fortress site known for its ornamental stone staircase and elevated ruins.",
+    "heritage_culture": "Yapahuwa briefly served as a royal capital during a politically turbulent period of Sri Lankan history.",
+    "best_time_of_day": "Morning",
+    "visit_duration_hours": "2–3",
+    "etiquette": [
+      "Respect local rules, religious practice and private spaces.",
+      "Keep the site clean and follow posted guidance."
+    ],
+    "safety": [
+      "Check local conditions before outdoor activities.",
+      "Use reputable operators for paid activities."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": false,
+    "nearest_station": null,
+    "sources": [
+      {
+        "label": "Sri Lanka Tourism",
+        "url": "https://www.srilanka.travel/"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "ritigala",
+    "name": "Ritigala Forest Monastery",
+    "region": "Cultural Triangle",
+    "district": "Anuradhapura",
+    "coordinates": {
+      "lat": 8.1126,
+      "lng": 80.6535
+    },
+    "categories": [
+      "heritage",
+      "forest",
+      "hiking",
+      "archaeology"
+    ],
+    "vibes": [
+      "nature",
+      "history",
+      "hidden-gem",
+      "quiet"
+    ],
+    "hidden_gem": true,
+    "summary": "Ancient monastic ruins lie within a forested mountain reserve, creating a quieter archaeological experience.",
+    "heritage_culture": "Ritigala is associated with an ancient Buddhist monastic tradition and austere forest practice.",
+    "best_time_of_day": "Morning",
+    "visit_duration_hours": "2–4",
+    "etiquette": [
+      "Respect local rules, religious practice and private spaces.",
+      "Keep the site clean and follow posted guidance."
+    ],
+    "safety": [
+      "Trails can be slippery after rain.",
+      "Carry water and use suitable footwear."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": false,
+    "nearest_station": null,
+    "sources": [
+      {
+        "label": "Sri Lanka Tourism",
+        "url": "https://www.srilanka.travel/"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "kandy",
+    "name": "Sacred City of Kandy",
+    "region": "Hill Country",
+    "district": "Kandy",
+    "coordinates": {
+      "lat": 7.2906,
+      "lng": 80.6337
+    },
+    "categories": [
+      "heritage",
+      "religion",
+      "city",
+      "culture"
+    ],
+    "vibes": [
+      "culture",
+      "history",
+      "food",
+      "family"
+    ],
+    "hidden_gem": false,
+    "summary": "A hill-country city centred on Kandy Lake and the Temple of the Sacred Tooth Relic.",
+    "heritage_culture": "Kandy was the last capital of the Sinhala kings and remains one of Sri Lanka’s most important Buddhist pilgrimage centres.",
+    "best_time_of_day": "Morning or late afternoon",
+    "visit_duration_hours": "4–8",
+    "etiquette": [
+      "Dress modestly at the Temple of the Tooth.",
+      "Remove footwear where required.",
+      "Avoid intrusive photography during worship."
+    ],
+    "safety": [
+      "Check local conditions before outdoor activities.",
+      "Use reputable operators for paid activities."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": true,
+    "nearest_station": "Kandy",
+    "sources": [
+      {
+        "label": "UNESCO — Sacred City of Kandy",
+        "url": "https://whc.unesco.org/en/list/450"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "peradeniya",
+    "name": "Royal Botanic Gardens, Peradeniya",
+    "region": "Hill Country",
+    "district": "Kandy",
+    "coordinates": {
+      "lat": 7.2699,
+      "lng": 80.5957
+    },
+    "categories": [
+      "garden",
+      "nature",
+      "family",
+      "photography"
+    ],
+    "vibes": [
+      "relaxation",
+      "nature",
+      "family",
+      "photography"
+    ],
+    "hidden_gem": false,
+    "summary": "A large botanical garden near Kandy with extensive plant collections and landscaped avenues.",
+    "heritage_culture": "The garden reflects a long history of botanical collecting and horticulture in Sri Lanka.",
+    "best_time_of_day": "Morning",
+    "visit_duration_hours": "2–4",
+    "etiquette": [
+      "Respect local rules, religious practice and private spaces.",
+      "Keep the site clean and follow posted guidance."
+    ],
+    "safety": [
+      "Check local conditions before outdoor activities.",
+      "Use reputable operators for paid activities."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": true,
+    "nearest_station": "Peradeniya Junction",
+    "sources": [
+      {
+        "label": "Sri Lanka Tourism",
+        "url": "https://www.srilanka.travel/"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "nuwara-eliya",
+    "name": "Nuwara Eliya",
+    "region": "Hill Country",
+    "district": "Nuwara Eliya",
+    "coordinates": {
+      "lat": 6.9497,
+      "lng": 80.7891
+    },
+    "categories": [
+      "mountains",
+      "tea",
+      "city",
+      "nature"
+    ],
+    "vibes": [
+      "cool-climate",
+      "relaxation",
+      "photography",
+      "tea"
+    ],
+    "hidden_gem": false,
+    "summary": "A high-elevation hill town surrounded by tea country, gardens and cool-climate landscapes.",
+    "heritage_culture": "Nuwara Eliya’s built environment and plantation landscape reflect the island’s colonial-era tea economy.",
+    "best_time_of_day": "Morning and late afternoon",
+    "visit_duration_hours": "4–8",
+    "etiquette": [
+      "Respect local rules, religious practice and private spaces.",
+      "Keep the site clean and follow posted guidance."
+    ],
+    "safety": [
+      "Check local conditions before outdoor activities.",
+      "Use reputable operators for paid activities."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": true,
+    "nearest_station": "Nanu Oya",
+    "sources": [
+      {
+        "label": "Sri Lanka Tourism",
+        "url": "https://www.srilanka.travel/"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "horton-plains",
+    "name": "Horton Plains National Park",
+    "region": "Hill Country",
+    "district": "Nuwara Eliya",
+    "coordinates": {
+      "lat": 6.8028,
+      "lng": 80.8072
+    },
+    "categories": [
+      "nature",
+      "hiking",
+      "wildlife",
+      "mountains"
+    ],
+    "vibes": [
+      "nature",
+      "adventure",
+      "photography",
+      "cool-climate"
+    ],
+    "hidden_gem": false,
+    "summary": "High-elevation grassland and cloud-forest terrain with well-known hiking routes and viewpoints.",
+    "heritage_culture": "Horton Plains forms part of the UNESCO-listed Central Highlands of Sri Lanka, recognised for biodiversity and montane ecosystems.",
+    "best_time_of_day": "Very early morning",
+    "visit_duration_hours": "4–6",
+    "etiquette": [
+      "Stay on marked paths.",
+      "Carry out all litter.",
+      "Do not feed wildlife."
+    ],
+    "safety": [
+      "Weather can change quickly.",
+      "Start early and take rain/cold protection."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": false,
+    "nearest_station": null,
+    "sources": [
+      {
+        "label": "UNESCO — Central Highlands of Sri Lanka",
+        "url": "https://whc.unesco.org/en/list/1203"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "ella",
+    "name": "Ella",
+    "region": "Hill Country",
+    "district": "Badulla",
+    "coordinates": {
+      "lat": 6.8667,
+      "lng": 81.0466
+    },
+    "categories": [
+      "mountains",
+      "hiking",
+      "tea",
+      "photography"
+    ],
+    "vibes": [
+      "adventure",
+      "nature",
+      "photography",
+      "social"
+    ],
+    "hidden_gem": false,
+    "summary": "A compact hill-country town used as a base for viewpoints, short hikes, waterfalls and the surrounding tea landscape.",
+    "heritage_culture": "Ella’s modern tourism identity is closely linked to the hill-country railway and plantation landscape.",
+    "best_time_of_day": "Early morning and late afternoon",
+    "visit_duration_hours": "4–8",
+    "etiquette": [
+      "Respect local rules, religious practice and private spaces.",
+      "Keep the site clean and follow posted guidance."
+    ],
+    "safety": [
+      "Check local conditions before outdoor activities.",
+      "Use reputable operators for paid activities."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": true,
+    "nearest_station": "Ella",
+    "sources": [
+      {
+        "label": "Sri Lanka Tourism",
+        "url": "https://www.srilanka.travel/"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "haputale",
+    "name": "Haputale & Lipton’s Seat",
+    "region": "Hill Country",
+    "district": "Badulla",
+    "coordinates": {
+      "lat": 6.7667,
+      "lng": 80.9597
+    },
+    "categories": [
+      "mountains",
+      "tea",
+      "viewpoint",
+      "hiking"
+    ],
+    "vibes": [
+      "photography",
+      "hidden-gem",
+      "nature",
+      "quiet"
+    ],
+    "hidden_gem": true,
+    "summary": "A cooler ridge town with access to tea-country viewpoints and scenic estates.",
+    "heritage_culture": "The landscape is closely associated with the history of Ceylon tea cultivation.",
+    "best_time_of_day": "Sunrise to morning",
+    "visit_duration_hours": "3–6",
+    "etiquette": [
+      "Respect local rules, religious practice and private spaces.",
+      "Keep the site clean and follow posted guidance."
+    ],
+    "safety": [
+      "Check local conditions before outdoor activities.",
+      "Use reputable operators for paid activities."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": true,
+    "nearest_station": "Haputale",
+    "sources": [
+      {
+        "label": "Sri Lanka Tourism",
+        "url": "https://www.srilanka.travel/"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "knuckles",
+    "name": "Knuckles Conservation Forest",
+    "region": "Hill Country",
+    "district": "Kandy / Matale",
+    "coordinates": {
+      "lat": 7.45,
+      "lng": 80.8
+    },
+    "categories": [
+      "mountains",
+      "hiking",
+      "forest",
+      "biodiversity"
+    ],
+    "vibes": [
+      "adventure",
+      "nature",
+      "hidden-gem",
+      "trekking"
+    ],
+    "hidden_gem": true,
+    "summary": "A rugged mountain and forest landscape offering challenging hikes and high biodiversity.",
+    "heritage_culture": "The Knuckles range is part of the Central Highlands World Heritage property.",
+    "best_time_of_day": "Early morning",
+    "visit_duration_hours": "5–10",
+    "etiquette": [
+      "Respect local rules, religious practice and private spaces.",
+      "Keep the site clean and follow posted guidance."
+    ],
+    "safety": [
+      "Use a knowledgeable local guide for remote routes.",
+      "Weather and trail conditions can change quickly."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": false,
+    "nearest_station": null,
+    "sources": [
+      {
+        "label": "UNESCO — Central Highlands of Sri Lanka",
+        "url": "https://whc.unesco.org/en/list/1203"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "riverston",
+    "name": "Riverston & Pitawala Pathana",
+    "region": "Hill Country",
+    "district": "Matale",
+    "coordinates": {
+      "lat": 7.5333,
+      "lng": 80.7333
+    },
+    "categories": [
+      "mountains",
+      "hiking",
+      "viewpoint",
+      "nature"
+    ],
+    "vibes": [
+      "hidden-gem",
+      "photography",
+      "nature",
+      "adventure"
+    ],
+    "hidden_gem": true,
+    "summary": "A scenic highland area in the Matale region with ridge viewpoints, grasslands and short nature walks.",
+    "heritage_culture": "The wider area sits within the ecologically important Knuckles landscape.",
+    "best_time_of_day": "Morning",
+    "visit_duration_hours": "3–6",
+    "etiquette": [
+      "Respect local rules, religious practice and private spaces.",
+      "Keep the site clean and follow posted guidance."
+    ],
+    "safety": [
+      "Fog and rain can reduce visibility.",
+      "Use suitable footwear and avoid exposed areas in severe weather."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": false,
+    "nearest_station": null,
+    "sources": [
+      {
+        "label": "Sri Lanka Tourism",
+        "url": "https://www.srilanka.travel/"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "adams-peak",
+    "name": "Sri Pada / Adam’s Peak",
+    "region": "Hill Country",
+    "district": "Ratnapura / Nuwara Eliya",
+    "coordinates": {
+      "lat": 6.8096,
+      "lng": 80.4994
+    },
+    "categories": [
+      "religion",
+      "hiking",
+      "mountains",
+      "pilgrimage"
+    ],
+    "vibes": [
+      "spiritual",
+      "adventure",
+      "sunrise",
+      "culture"
+    ],
+    "hidden_gem": false,
+    "summary": "A sacred mountain pilgrimage route climbed by people from several religious traditions.",
+    "heritage_culture": "Sri Pada is culturally significant across Buddhist, Hindu, Muslim and Christian traditions, with a major seasonal pilgrimage.",
+    "best_time_of_day": "Night climb for dawn during pilgrimage season",
+    "visit_duration_hours": "6–10",
+    "etiquette": [
+      "Respect pilgrims and religious practices.",
+      "Keep noise low near sacred areas."
+    ],
+    "safety": [
+      "The climb involves many steps and can be physically demanding.",
+      "Check seasonal and weather conditions before attempting."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": false,
+    "nearest_station": null,
+    "sources": [
+      {
+        "label": "Sri Lanka Tourism",
+        "url": "https://www.srilanka.travel/"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "galle-fort",
+    "name": "Galle Fort",
+    "region": "South Coast",
+    "district": "Galle",
+    "coordinates": {
+      "lat": 6.026,
+      "lng": 80.217
+    },
+    "categories": [
+      "heritage",
+      "architecture",
+      "coast",
+      "food"
+    ],
+    "vibes": [
+      "culture",
+      "photography",
+      "relaxation",
+      "couple"
+    ],
+    "hidden_gem": false,
+    "summary": "A walkable fortified old town with ramparts, historic buildings, museums, cafes and ocean views.",
+    "heritage_culture": "Galle’s fortifications show layers of Portuguese and Dutch colonial development adapted to a South Asian setting.",
+    "best_time_of_day": "Late afternoon to sunset",
+    "visit_duration_hours": "3–6",
+    "etiquette": [
+      "Respect private residences and active places of worship.",
+      "Avoid climbing restricted fortification areas."
+    ],
+    "safety": [
+      "Check local conditions before outdoor activities.",
+      "Use reputable operators for paid activities."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": true,
+    "nearest_station": "Galle",
+    "sources": [
+      {
+        "label": "UNESCO — Old Town of Galle and its Fortifications",
+        "url": "https://whc.unesco.org/en/list/451"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "mirissa",
+    "name": "Mirissa",
+    "region": "South Coast",
+    "district": "Matara",
+    "coordinates": {
+      "lat": 5.9483,
+      "lng": 80.4716
+    },
+    "categories": [
+      "beach",
+      "coast",
+      "food",
+      "wildlife"
+    ],
+    "vibes": [
+      "relaxation",
+      "beach",
+      "couple",
+      "nightlife"
+    ],
+    "hidden_gem": false,
+    "summary": "A south-coast beach town known for swimming areas, cafes and seasonal marine-tourism activity.",
+    "heritage_culture": "Mirissa is rooted in a fishing-coast setting that has developed into a major tourism stop.",
+    "best_time_of_day": "Morning and sunset",
+    "visit_duration_hours": "4–8",
+    "etiquette": [
+      "Respect local rules, religious practice and private spaces.",
+      "Keep the site clean and follow posted guidance."
+    ],
+    "safety": [
+      "Check sea conditions and local warnings before swimming.",
+      "Choose responsible licensed marine-tour operators."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": true,
+    "nearest_station": "Weligama / Mirissa area",
+    "sources": [
+      {
+        "label": "Sri Lanka Tourism",
+        "url": "https://www.srilanka.travel/"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "unawatuna",
+    "name": "Unawatuna",
+    "region": "South Coast",
+    "district": "Galle",
+    "coordinates": {
+      "lat": 6.0103,
+      "lng": 80.2497
+    },
+    "categories": [
+      "beach",
+      "snorkeling",
+      "food",
+      "coast"
+    ],
+    "vibes": [
+      "relaxation",
+      "beach",
+      "family",
+      "social"
+    ],
+    "hidden_gem": false,
+    "summary": "A sheltered south-coast beach area close to Galle, with restaurants and easy day-trip access.",
+    "heritage_culture": "The area combines coastal village life with a long-established visitor economy.",
+    "best_time_of_day": "Morning and late afternoon",
+    "visit_duration_hours": "4–8",
+    "etiquette": [
+      "Respect local rules, religious practice and private spaces.",
+      "Keep the site clean and follow posted guidance."
+    ],
+    "safety": [
+      "Check local conditions before outdoor activities.",
+      "Use reputable operators for paid activities."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": true,
+    "nearest_station": "Unawatuna",
+    "sources": [
+      {
+        "label": "Sri Lanka Tourism",
+        "url": "https://www.srilanka.travel/"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "hiriketiya",
+    "name": "Hiriketiya Bay",
+    "region": "South Coast",
+    "district": "Matara",
+    "coordinates": {
+      "lat": 5.962,
+      "lng": 80.706
+    },
+    "categories": [
+      "beach",
+      "surf",
+      "food",
+      "coast"
+    ],
+    "vibes": [
+      "hidden-gem",
+      "surf",
+      "relaxation",
+      "social"
+    ],
+    "hidden_gem": true,
+    "summary": "A small horseshoe-shaped bay near Dickwella with a compact surf and cafe scene.",
+    "heritage_culture": "Hiriketiya has grown from a local bay into a small-scale international surf destination.",
+    "best_time_of_day": "Morning and sunset",
+    "visit_duration_hours": "4–8",
+    "etiquette": [
+      "Respect local rules, religious practice and private spaces.",
+      "Keep the site clean and follow posted guidance."
+    ],
+    "safety": [
+      "Swimming and surf conditions vary; follow local advice.",
+      "Use reputable surf instructors if learning."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": false,
+    "nearest_station": null,
+    "sources": [
+      {
+        "label": "Sri Lanka Tourism",
+        "url": "https://www.srilanka.travel/"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "bentota",
+    "name": "Bentota",
+    "region": "South Coast",
+    "district": "Galle",
+    "coordinates": {
+      "lat": 6.421,
+      "lng": 79.9958
+    },
+    "categories": [
+      "beach",
+      "river",
+      "watersports",
+      "wellness"
+    ],
+    "vibes": [
+      "relaxation",
+      "family",
+      "watersports",
+      "resort"
+    ],
+    "hidden_gem": false,
+    "summary": "A west/south-west coast resort area where beach tourism meets the Bentota River.",
+    "heritage_culture": "Bentota has long been one of Sri Lanka’s established coastal resort destinations.",
+    "best_time_of_day": "Morning and sunset",
+    "visit_duration_hours": "4–8",
+    "etiquette": [
+      "Respect local rules, religious practice and private spaces.",
+      "Keep the site clean and follow posted guidance."
+    ],
+    "safety": [
+      "Check local conditions before outdoor activities.",
+      "Use reputable operators for paid activities."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": true,
+    "nearest_station": "Bentota",
+    "sources": [
+      {
+        "label": "Sri Lanka Tourism",
+        "url": "https://www.srilanka.travel/"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "sinharaja",
+    "name": "Sinharaja Forest Reserve",
+    "region": "South-West",
+    "district": "Ratnapura / Galle / Matara",
+    "coordinates": {
+      "lat": 6.4044,
+      "lng": 80.5
+    },
+    "categories": [
+      "rainforest",
+      "wildlife",
+      "hiking",
+      "biodiversity"
+    ],
+    "vibes": [
+      "nature",
+      "eco",
+      "wildlife",
+      "adventure"
+    ],
+    "hidden_gem": false,
+    "summary": "Sri Lanka’s best-known surviving lowland rainforest, valued for biodiversity and endemic species.",
+    "heritage_culture": "Sinharaja is a UNESCO natural World Heritage property and a key conservation landscape.",
+    "best_time_of_day": "Morning",
+    "visit_duration_hours": "4–8",
+    "etiquette": [
+      "Follow forest regulations and guide instructions.",
+      "Do not remove plants or disturb wildlife."
+    ],
+    "safety": [
+      "Expect rain, leeches and slippery trails.",
+      "Wear suitable footwear and carry rain protection."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": false,
+    "nearest_station": null,
+    "sources": [
+      {
+        "label": "UNESCO — Sinharaja Forest Reserve",
+        "url": "https://whc.unesco.org/en/list/405"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "yala",
+    "name": "Yala National Park",
+    "region": "Wildlife & National Parks",
+    "district": "Hambantota / Monaragala",
+    "coordinates": {
+      "lat": 6.3725,
+      "lng": 81.5185
+    },
+    "categories": [
+      "wildlife",
+      "safari",
+      "nature",
+      "photography"
+    ],
+    "vibes": [
+      "wildlife",
+      "adventure",
+      "photography",
+      "nature"
+    ],
+    "hidden_gem": false,
+    "summary": "A major protected area in Sri Lanka’s south-east, visited for safari-based wildlife viewing.",
+    "heritage_culture": "Yala protects dry-zone habitats and is especially well known for its wildlife tourism.",
+    "best_time_of_day": "Early morning or late afternoon",
+    "visit_duration_hours": "4–7",
+    "etiquette": [
+      "Keep distance from wildlife and follow ranger/driver instructions.",
+      "Do not feed animals or pressure drivers to chase sightings."
+    ],
+    "safety": [
+      "Stay inside safari vehicles except where officially permitted.",
+      "Choose licensed, responsible operators."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": false,
+    "nearest_station": null,
+    "sources": [
+      {
+        "label": "Department of Wildlife Conservation Sri Lanka",
+        "url": "https://www.dwc.gov.lk/"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "udawalawe",
+    "name": "Udawalawe National Park",
+    "region": "Wildlife & National Parks",
+    "district": "Ratnapura / Monaragala",
+    "coordinates": {
+      "lat": 6.4745,
+      "lng": 80.8887
+    },
+    "categories": [
+      "wildlife",
+      "safari",
+      "elephants",
+      "nature"
+    ],
+    "vibes": [
+      "wildlife",
+      "family",
+      "photography",
+      "nature"
+    ],
+    "hidden_gem": false,
+    "summary": "A dry-zone national park widely visited for elephant viewing and open-landscape safaris.",
+    "heritage_culture": "The park and reservoir landscape support a range of wildlife and are part of Sri Lanka’s protected-area network.",
+    "best_time_of_day": "Early morning or late afternoon",
+    "visit_duration_hours": "4–7",
+    "etiquette": [
+      "Do not feed wildlife.",
+      "Support operators that respect park rules and animal space."
+    ],
+    "safety": [
+      "Check local conditions before outdoor activities.",
+      "Use reputable operators for paid activities."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": false,
+    "nearest_station": null,
+    "sources": [
+      {
+        "label": "Department of Wildlife Conservation Sri Lanka",
+        "url": "https://www.dwc.gov.lk/"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "wilpattu",
+    "name": "Wilpattu National Park",
+    "region": "Wildlife & National Parks",
+    "district": "Puttalam / Anuradhapura",
+    "coordinates": {
+      "lat": 8.4582,
+      "lng": 80.0263
+    },
+    "categories": [
+      "wildlife",
+      "safari",
+      "forest",
+      "nature"
+    ],
+    "vibes": [
+      "wildlife",
+      "quiet",
+      "photography",
+      "nature"
+    ],
+    "hidden_gem": false,
+    "summary": "A large national park in north-western Sri Lanka known for forest, wildlife and natural lake-like villu wetlands.",
+    "heritage_culture": "Wilpattu is one of Sri Lanka’s long-established protected areas.",
+    "best_time_of_day": "Early morning or late afternoon",
+    "visit_duration_hours": "5–8",
+    "etiquette": [
+      "Respect local rules, religious practice and private spaces.",
+      "Keep the site clean and follow posted guidance."
+    ],
+    "safety": [
+      "Check local conditions before outdoor activities.",
+      "Use reputable operators for paid activities."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": false,
+    "nearest_station": null,
+    "sources": [
+      {
+        "label": "Department of Wildlife Conservation Sri Lanka",
+        "url": "https://www.dwc.gov.lk/"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "trincomalee",
+    "name": "Trincomalee",
+    "region": "East Coast",
+    "district": "Trincomalee",
+    "coordinates": {
+      "lat": 8.5874,
+      "lng": 81.2152
+    },
+    "categories": [
+      "coast",
+      "culture",
+      "history",
+      "beach"
+    ],
+    "vibes": [
+      "beach",
+      "culture",
+      "food",
+      "photography"
+    ],
+    "hidden_gem": false,
+    "summary": "An east-coast harbour city with beaches, religious sites, viewpoints and layered maritime history.",
+    "heritage_culture": "Trincomalee has long-standing strategic, religious and maritime significance.",
+    "best_time_of_day": "Morning and late afternoon",
+    "visit_duration_hours": "4–8",
+    "etiquette": [
+      "Respect local rules, religious practice and private spaces.",
+      "Keep the site clean and follow posted guidance."
+    ],
+    "safety": [
+      "Check local conditions before outdoor activities.",
+      "Use reputable operators for paid activities."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": true,
+    "nearest_station": "Trincomalee",
+    "sources": [
+      {
+        "label": "Sri Lanka Tourism",
+        "url": "https://www.srilanka.travel/"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "nilaveli",
+    "name": "Nilaveli Beach",
+    "region": "East Coast",
+    "district": "Trincomalee",
+    "coordinates": {
+      "lat": 8.699,
+      "lng": 81.192
+    },
+    "categories": [
+      "beach",
+      "snorkeling",
+      "relaxation",
+      "coast"
+    ],
+    "vibes": [
+      "beach",
+      "relaxation",
+      "family",
+      "water"
+    ],
+    "hidden_gem": false,
+    "summary": "A long sandy beach north of Trincomalee used as a base for coastal relaxation and marine excursions.",
+    "heritage_culture": "Nilaveli is closely connected to the tourism economy of the Trincomalee coast.",
+    "best_time_of_day": "Morning and late afternoon",
+    "visit_duration_hours": "4–8",
+    "etiquette": [
+      "Respect local rules, religious practice and private spaces.",
+      "Keep the site clean and follow posted guidance."
+    ],
+    "safety": [
+      "Check sea and boat conditions before marine activities.",
+      "Use licensed operators and safety equipment."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": false,
+    "nearest_station": null,
+    "sources": [
+      {
+        "label": "Sri Lanka Tourism",
+        "url": "https://www.srilanka.travel/"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "pigeon-island",
+    "name": "Pigeon Island National Park",
+    "region": "East Coast",
+    "district": "Trincomalee",
+    "coordinates": {
+      "lat": 8.72,
+      "lng": 81.203
+    },
+    "categories": [
+      "marine",
+      "snorkeling",
+      "wildlife",
+      "island"
+    ],
+    "vibes": [
+      "nature",
+      "water",
+      "wildlife",
+      "adventure"
+    ],
+    "hidden_gem": false,
+    "summary": "A small marine national park off the Nilaveli coast visited for reefs and snorkeling.",
+    "heritage_culture": "The protected marine environment requires low-impact visitor behaviour.",
+    "best_time_of_day": "Morning",
+    "visit_duration_hours": "2–4",
+    "etiquette": [
+      "Do not touch or stand on coral.",
+      "Do not feed or chase marine wildlife."
+    ],
+    "safety": [
+      "Use a reputable licensed boat operator.",
+      "Only snorkel in conditions suited to your ability."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": false,
+    "nearest_station": null,
+    "sources": [
+      {
+        "label": "Department of Wildlife Conservation Sri Lanka",
+        "url": "https://www.dwc.gov.lk/"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "arugam-bay",
+    "name": "Arugam Bay",
+    "region": "East Coast",
+    "district": "Ampara",
+    "coordinates": {
+      "lat": 6.8404,
+      "lng": 81.8368
+    },
+    "categories": [
+      "beach",
+      "surf",
+      "food",
+      "coast"
+    ],
+    "vibes": [
+      "surf",
+      "social",
+      "beach",
+      "adventure"
+    ],
+    "hidden_gem": false,
+    "summary": "An east-coast beach town internationally known for surfing and a seasonal visitor scene.",
+    "heritage_culture": "The area combines fishing-community roots with a modern surf-tourism economy.",
+    "best_time_of_day": "Morning and sunset",
+    "visit_duration_hours": "4–8",
+    "etiquette": [
+      "Respect local rules, religious practice and private spaces.",
+      "Keep the site clean and follow posted guidance."
+    ],
+    "safety": [
+      "Surf and sea conditions vary; match breaks to your skill level.",
+      "Use reputable instructors and avoid remote late-night travel."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": false,
+    "nearest_station": null,
+    "sources": [
+      {
+        "label": "Sri Lanka Tourism",
+        "url": "https://www.srilanka.travel/"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "jaffna",
+    "name": "Jaffna",
+    "region": "Northern",
+    "district": "Jaffna",
+    "coordinates": {
+      "lat": 9.6615,
+      "lng": 80.0255
+    },
+    "categories": [
+      "culture",
+      "food",
+      "history",
+      "city"
+    ],
+    "vibes": [
+      "culture",
+      "food",
+      "history",
+      "slow-travel"
+    ],
+    "hidden_gem": false,
+    "summary": "The main urban centre of Sri Lanka’s north, with distinctive Tamil culture, temples, food traditions and historic sites.",
+    "heritage_culture": "Jaffna’s history reflects Tamil heritage, colonial periods, conflict and contemporary rebuilding.",
+    "best_time_of_day": "Morning and late afternoon",
+    "visit_duration_hours": "5–8",
+    "etiquette": [
+      "Dress respectfully at temples.",
+      "Follow local rules for footwear and photography."
+    ],
+    "safety": [
+      "Check local conditions before outdoor activities.",
+      "Use reputable operators for paid activities."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": true,
+    "nearest_station": "Jaffna",
+    "sources": [
+      {
+        "label": "Sri Lanka Tourism",
+        "url": "https://www.srilanka.travel/"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "delft-island",
+    "name": "Delft Island",
+    "region": "Northern",
+    "district": "Jaffna",
+    "coordinates": {
+      "lat": 9.5,
+      "lng": 79.6833
+    },
+    "categories": [
+      "island",
+      "culture",
+      "history",
+      "cycling"
+    ],
+    "vibes": [
+      "hidden-gem",
+      "culture",
+      "slow-travel",
+      "photography"
+    ],
+    "hidden_gem": true,
+    "summary": "A remote island off the Jaffna Peninsula with distinctive landscapes, local communities and colonial-era remains.",
+    "heritage_culture": "Delft’s heritage reflects northern island life and layers of colonial history.",
+    "best_time_of_day": "Morning",
+    "visit_duration_hours": "5–8",
+    "etiquette": [
+      "Respect local rules, religious practice and private spaces.",
+      "Keep the site clean and follow posted guidance."
+    ],
+    "safety": [
+      "Carry water and sun protection.",
+      "Confirm return ferry times before travelling."
+    ],
+    "transport_notes": [
+      "Access normally involves road travel to a ferry point and a passenger ferry; verify current ferry operations locally."
+    ],
+    "train_access": false,
+    "nearest_station": null,
+    "sources": [
+      {
+        "label": "Sri Lanka Tourism",
+        "url": "https://www.srilanka.travel/"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  },
+  {
+    "id": "kalpitiya",
+    "name": "Kalpitiya Peninsula",
+    "region": "North-West",
+    "district": "Puttalam",
+    "coordinates": {
+      "lat": 8.233,
+      "lng": 79.766
+    },
+    "categories": [
+      "coast",
+      "lagoon",
+      "kite-surf",
+      "wildlife"
+    ],
+    "vibes": [
+      "hidden-gem",
+      "water",
+      "adventure",
+      "nature"
+    ],
+    "hidden_gem": true,
+    "summary": "A peninsula and lagoon landscape known for water sports, coastal villages and seasonal marine activities.",
+    "heritage_culture": "Kalpitiya’s tourism sits alongside long-standing fishing and lagoon-based livelihoods.",
+    "best_time_of_day": "Morning and late afternoon",
+    "visit_duration_hours": "4–8",
+    "etiquette": [
+      "Respect local rules, religious practice and private spaces.",
+      "Keep the site clean and follow posted guidance."
+    ],
+    "safety": [
+      "Use reputable water-sport and boat operators.",
+      "Check wind, sea and seasonal wildlife conditions."
+    ],
+    "transport_notes": [
+      "Use current map/transit information for routing and timings; operational details can change."
+    ],
+    "train_access": false,
+    "nearest_station": null,
+    "sources": [
+      {
+        "label": "Sri Lanka Tourism",
+        "url": "https://www.srilanka.travel/"
+      }
+    ],
+    "verification_note": "Curated prototype record. Verify live opening hours, fees, transport times, weather and availability with live/official sources."
+  }
+]

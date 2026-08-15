@@ -75,6 +75,7 @@
 
     function renderPersonas() {
       const grid = document.getElementById("personaGrid");
+      if (!grid) return;
 
       grid.innerHTML = personaData.map(persona => `
         <div class="card">
@@ -88,6 +89,7 @@
 
     function renderRoadmap() {
       const body = document.getElementById("roadmapBody");
+      if (!body) return;
 
       body.innerHTML = roadmapData.map(item => `
         <tr>
@@ -99,21 +101,23 @@
     }
 
     function bindSetup() {
-      document.getElementById("saveSettingsBtn").addEventListener("click", saveClaudeSettings);
+      document.getElementById("saveSettingsBtn")?.addEventListener("click", saveClaudeSettings);
     }
 
     function saveClaudeSettings() {
       const settings = {
-        useClaude: document.getElementById("useClaude").checked,
-        model: document.getElementById("model").value.trim() || "claude-3-5-sonnet-latest"
+        useClaude: document.getElementById("useClaude")?.checked || false,
+        model: document.getElementById("model")?.value.trim() || "claude-3-5-sonnet-latest"
       };
 
       localStorage.setItem("sriGuideSettings", JSON.stringify(settings));
-      document.getElementById("setupStatus").textContent = "Settings saved.";
+      const setupStatus = document.getElementById("setupStatus");
+      if (!setupStatus) return;
+      setupStatus.textContent = "Settings saved.";
       updateChatStatus();
 
       setTimeout(() => {
-        document.getElementById("setupStatus").textContent = "";
+        setupStatus.textContent = "";
       }, 3000);
     }
 
@@ -122,25 +126,32 @@
       const settings = JSON.parse(localStorage.getItem("sriGuideSettings") || "{}");
 
       if (settings.model) {
-        document.getElementById("model").value = settings.model;
+        const model = document.getElementById("model");
+        if (model) model.value = settings.model;
       }
 
-      document.getElementById("useClaude").checked = !!settings.useClaude;
+      const useClaude = document.getElementById("useClaude");
+      if (useClaude) useClaude.checked = !!settings.useClaude;
     }
 
     function updateChatStatus() {
       const settings = JSON.parse(localStorage.getItem("sriGuideSettings") || "{}");
       const el = document.getElementById("chatStatus");
+      if (!el) return;
+      if (document.querySelector(".assistant-frame")) {
+        el.textContent = "Embedded AI agent";
+        return;
+      }
 
       if (settings.useClaude) {
         el.textContent = "Secure proxy mode";
       } else {
-        el.textContent = "Offline prototype mode";
+        el.textContent = "Travel assistant ready";
       }
     }
 
     function bindDemo() {
-      document.getElementById("runDemoBtn").addEventListener("click", runCompetitionDemo);
+      document.getElementById("runDemoBtn")?.addEventListener("click", runCompetitionDemo);
     }
 
     function runCompetitionDemo() {
@@ -157,7 +168,8 @@
       generateItinerary();
 
       const demoStatus = document.getElementById("demoStatus");
-      demoStatus.textContent = "Demo itinerary generated for the panel.";
+      if (!demoStatus) return;
+      demoStatus.textContent = "Sample itinerary generated.";
       setTimeout(() => {
         demoStatus.textContent = "";
       }, 3500);
