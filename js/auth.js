@@ -142,7 +142,7 @@
       setStatus(error.message, "error");
       return;
     }
-    setStatus(authState.mode === "login" ? "Welcome back." : "Account created. Check your email if confirmation is enabled.", "ok");
+    setStatus(authState.mode === "login" ? "Welcome back." : "Account created. Please check your email inbox and spam/junk folder for the confirmation link.", "ok");
   }
 
   async function handleGoogleAuth() {
