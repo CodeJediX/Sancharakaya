@@ -6,10 +6,8 @@
     // Local development runs the Node/Gemini backend on this port.
     LOCAL_API_BASE_URL: "http://localhost:8787",
 
-    // Set this after deploying the backend, for example:
-    // "https://sancharakaya-api.example.com"
-    // GitHub Pages must never call a visitor's localhost.
-    PRODUCTION_API_BASE_URL: "",
+    // Production Gemini backend. GitHub Pages must never call a visitor's localhost.
+    PRODUCTION_API_BASE_URL: "https://sancharakaya-kx2n.vercel.app",
 
     get API_BASE_URL() {
       if (isLocal) return this.LOCAL_API_BASE_URL;
