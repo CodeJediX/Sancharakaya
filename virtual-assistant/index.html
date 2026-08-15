@@ -37,6 +37,7 @@
     <button class="tab" data-tab="itinerary">Itinerary</button>
     <button class="tab" data-tab="explore">Explore</button>
     <button class="tab" data-tab="saved">Saved</button>
+    <button class="tab" data-tab="profile">Profile</button>
   </nav>
 
   <main>
@@ -46,6 +47,10 @@
           <div class="panel-title">
             <div><span class="eyebrow">TRIP MEMORY</span><h2>Your trip</h2></div>
             <button id="clearMemoryBtn" class="text-btn" type="button">Reset</button>
+          </div>
+          <div id="authMiniCard" class="auth-mini-card">
+            <strong>Sign in required</strong>
+            <span>Use Google Sign-In to unlock the AI guide and save chats.</span>
           </div>
           <label>Starting location<input id="profileStart" type="text" placeholder="e.g. Colombo or CMB Airport"></label>
           <div class="two-col">
@@ -75,6 +80,22 @@
         </aside>
 
         <section class="chat-panel">
+          <div id="chatGate" class="chat-gate glass">
+            <div>
+              <span class="eyebrow">PRIVATE AI ACCESS</span>
+              <h2>Sign in to use Sancharakaya AI</h2>
+              <p>Google Sign-In unlocks live AI chat, previous chat history, trip profile, and travel badges.</p>
+            </div>
+            <div id="googleSignInButton"></div>
+            <p id="googleSetupNotice" class="auth-note hidden">Google Sign-In needs a Web Client ID in <code>virtual-assistant/js/config.js</code>.</p>
+          </div>
+
+          <div class="chat-session-bar">
+            <button id="newChatBtn" class="secondary-btn" type="button">New chat</button>
+            <select id="chatSessionSelect" aria-label="Previous chats"></select>
+            <button id="deleteChatBtn" class="secondary-btn danger" type="button">Delete chat</button>
+          </div>
+
           <div class="hero-card">
             <div>
               <span class="eyebrow">AI TOURISM ASSISTANT</span>
@@ -161,10 +182,36 @@
         <div id="savedGrid" class="explore-grid"></div>
       </div>
     </section>
+
+    <section id="profile" class="page">
+      <div class="section-shell profile-shell">
+        <div class="section-head">
+          <div><span class="eyebrow">TRAVELER ACCOUNT</span><h1>User profile</h1></div>
+          <button id="signOutBtn" class="secondary-btn danger" type="button">Sign out</button>
+        </div>
+        <div class="profile-dashboard">
+          <article class="profile-card">
+            <div id="profileAvatar" class="profile-avatar">SK</div>
+            <div>
+              <h2 id="profileName">Guest traveler</h2>
+              <p id="profileEmail">Sign in with Google to save your travel workspace.</p>
+              <div id="profileStatusPills" class="memory-pills"></div>
+            </div>
+          </article>
+          <div class="profile-stats">
+            <div><strong id="profileChatCount">0</strong><span>Chats</span></div>
+            <div><strong id="profileSavedCount">0</strong><span>Saved places</span></div>
+            <div><strong id="profileBadgeCount">0</strong><span>Badges earned</span></div>
+          </div>
+        </div>
+        <div class="badge-grid" id="badgeGrid"></div>
+      </div>
+    </section>
   </main>
 
   <footer><strong>Sancharakaya</strong><span>AI-powered travel intelligence for Sri Lanka</span></footer>
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
   <script src="js/config.js"></script>
   <script src="js/app.js"></script>
 </body>
