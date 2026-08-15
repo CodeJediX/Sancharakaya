@@ -9,13 +9,11 @@
       bindChat();
       bindPrices();
       bindSafetyTools();
-      bindSetup();
       bindTheme();
       bindMotionEffects();
       renderPrices();
       renderSafety();
       renderSustainability();
-      loadClaudeSettings();
       updateChatStatus();
       if (document.getElementById("chatLog")) {
         addMessage("bot", "Hello! I am Sancharakaya (සංචාරකයා). I can help with itineraries, fair prices, safety, transport, seasons, food, and sustainable travel in Sri Lanka.");

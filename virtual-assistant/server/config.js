@@ -31,6 +31,7 @@ module.exports = {
   PORT: Number(process.env.PORT || 8787),
   GEMINI_API_KEY,
   GEMINI_MODEL: process.env.GEMINI_MODEL || "",
-  ALLOWED_ORIGIN: process.env.ALLOWED_ORIGIN || "*",
+  ALLOWED_ORIGIN: process.env.ALLOWED_ORIGIN || "http://localhost:8080",
+  TRUST_PROXY: process.env.TRUST_PROXY === "true",
   ENABLE_NEARBY_OSM: process.env.ENABLE_NEARBY_OSM !== "false"
 };

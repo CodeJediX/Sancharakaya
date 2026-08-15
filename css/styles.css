@@ -1505,13 +1505,20 @@
     .safety-action strong {
       font-family: var(--f-display);
       color: var(--ocean-dark);
-      font-size: 27px;
+      font-size: clamp(21px, 2.1vw, 27px);
       line-height: 1;
+      overflow-wrap: anywhere;
     }
 
     .emergency-action {
       background: linear-gradient(135deg, var(--clay-soft), var(--surface));
       border-color: color-mix(in srgb, var(--clay) 35%, var(--line));
+    }
+
+    .safety-source-note {
+      margin: -6px 0 16px;
+      color: var(--ink-soft);
+      font-size: 12.5px;
     }
 
     .safety-toolkit {

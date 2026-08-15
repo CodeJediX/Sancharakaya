@@ -24,17 +24,6 @@
       addMessage("user", escapeHTML(value));
       input.value = "";
 
-      const claudeResult = await getClaudeResponse(value);
-
-      if (claudeResult && claudeResult.ok) {
-        addMessage("bot", escapeHTML(claudeResult.text).replace(/\n/g, "<br>"));
-        return;
-      }
-
-      if (claudeResult && claudeResult.error) {
-        addMessage("bot", `Assistant service error: ${claudeResult.error}. I can still help with built-in Sri Lanka travel guidance.`);
-      }
-
       addMessage("bot", getOfflineResponse(value));
     }
 

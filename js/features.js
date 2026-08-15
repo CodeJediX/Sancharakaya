@@ -1,4 +1,4 @@
-    function bindPrices() {
+﻿    function bindPrices() {
       document.getElementById("priceFilter").addEventListener("input", (e) => {
         renderPrices(e.target.value.toLowerCase());
       });
@@ -266,42 +266,7 @@
       `).join("");
     }
 
-    function bindSetup() {
-      document.getElementById("saveSettingsBtn")?.addEventListener("click", saveClaudeSettings);
-    }
-
-    function saveClaudeSettings() {
-      const settings = {
-        useClaude: document.getElementById("useClaude")?.checked || false,
-        model: document.getElementById("model")?.value.trim() || "claude-3-5-sonnet-latest"
-      };
-
-      localStorage.setItem("sriGuideSettings", JSON.stringify(settings));
-      const setupStatus = document.getElementById("setupStatus");
-      if (!setupStatus) return;
-      setupStatus.textContent = "Settings saved.";
-      updateChatStatus();
-
-      setTimeout(() => {
-        setupStatus.textContent = "";
-      }, 3000);
-    }
-
-    function loadClaudeSettings() {
-      localStorage.removeItem("sriGuideClaude");
-      const settings = JSON.parse(localStorage.getItem("sriGuideSettings") || "{}");
-
-      if (settings.model) {
-        const model = document.getElementById("model");
-        if (model) model.value = settings.model;
-      }
-
-      const useClaude = document.getElementById("useClaude");
-      if (useClaude) useClaude.checked = !!settings.useClaude;
-    }
-
     function updateChatStatus() {
-      const settings = JSON.parse(localStorage.getItem("sriGuideSettings") || "{}");
       const el = document.getElementById("chatStatus");
       if (!el) return;
       if (document.querySelector(".assistant-frame")) {
@@ -309,36 +274,7 @@
         return;
       }
 
-      if (settings.useClaude) {
-        el.textContent = "Secure proxy mode";
-      } else {
-        el.textContent = "Travel assistant ready";
-      }
-    }
-
-    function bindDemo() {
-      document.getElementById("runDemoBtn")?.addEventListener("click", runCompetitionDemo);
-    }
-
-    function runCompetitionDemo() {
-      document.getElementById("persona").value = "First-Time Independent Traveler";
-      applyPersona("First-Time Independent Traveler");
-
-      document.getElementById("days").value = 7;
-      document.getElementById("region").value = "Auto";
-      document.getElementById("budget").value = "mid";
-      document.getElementById("pace").value = "balanced";
-      document.getElementById("groupSize").value = 2;
-
-      activateTab("planner");
-      generateItinerary();
-
-      const demoStatus = document.getElementById("demoStatus");
-      if (!demoStatus) return;
-      demoStatus.textContent = "Sample itinerary generated.";
-      setTimeout(() => {
-        demoStatus.textContent = "";
-      }, 3500);
+      el.textContent = "Gemini travel assistant ready";
     }
 
     init();
