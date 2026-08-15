@@ -24,6 +24,38 @@
       throw error;
     }finally{clearTimeout(timer)}
   }
+  async function loadStaticPlaces(){
+    if(window.__sancharakayaStaticPlaces)return window.__sancharakayaStaticPlaces;
+    try{
+      const r=await fetch("data/places.json",{cache:"force-cache"});
+      window.__sancharakayaStaticPlaces=r.ok?await r.json():[];
+    }catch{window.__sancharakayaStaticPlaces=[]}
+    return window.__sancharakayaStaticPlaces;
+  }
+  function localPlaceMatches(places,query=""){
+    const q=String(query||"").toLowerCase().trim(),interests=memory.interests||[];
+    return places.filter(p=>{
+      const hay=[p.name,p.region,p.district,p.summary,p.heritage_culture,...(p.categories||[]),...(p.vibes||[])].join(" ").toLowerCase();
+      const queryOk=!q||hay.includes(q);
+      const interestOk=!interests.length||interests.some(i=>hay.includes(String(i).toLowerCase()));
+      const hiddenOk=!memory.hidden_gems||p.hidden_gem;
+      return queryOk&&interestOk&&hiddenOk;
+    }).slice(0,12);
+  }
+  async function staticAssistantReply(prompt){
+    const places=await loadStaticPlaces(),matches=localPlaceMatches(places,prompt).slice(0,3);
+    const lower=String(prompt||"").toLowerCase();
+    if(/emergency|police|ambulance|help|scam|safe|safety/.test(lower)){
+      return "Offline travel guide mode: for urgent help in Sri Lanka call Police 119, Suwa Seriya ambulance 1990, Tourism Hotline 1912, or Tourist Police 011 242 1052. For scams, avoid pressure sales, confirm prices before rides or tours, use official ticket counters, and keep your hotel or trusted contact updated.";
+    }
+    if(/weather|rain|forecast/.test(lower)){
+      return "Offline travel guide mode: live weather needs the Gemini backend. For planning, check the current local forecast before travel, avoid exposed hikes during heavy rain or lightning, and keep flexible backup stops for hill-country and coastal routes.";
+    }
+    if(matches.length){
+      return `Offline travel guide mode: here are good matches from the built-in Sri Lanka guide:\n\n${matches.map(p=>`**${p.name}** (${p.region}) - ${p.summary}`).join("\n\n")}\n\nLive AI itinerary changes, weather, and nearby discovery will activate after the production backend URL is connected.`;
+    }
+    return "Offline travel guide mode: I can still help with Sri Lanka routes, safety basics, fair-price awareness, etiquette, and saved destinations from the built-in guide. For live Gemini answers, deploy the backend and set the production API URL.";
+  }
   function setTheme(theme,notifyParent=true){const isDark=theme==="dark";document.documentElement.classList.toggle("dark",isDark);localStorage.setItem("sancharakayaTheme",isDark?"dark":"light");const b=$("#themeBtn");if(b){b.textContent=isDark?"Light":"Dark";b.setAttribute("aria-label",isDark?"Switch to light mode":"Switch to dark mode")}if(notifyParent&&window.parent!==window)window.parent.postMessage({type:"sancharakaya-theme-change",theme:isDark?"dark":"light"},window.location.origin)}
   function initTheme(){setTheme(localStorage.getItem("sancharakayaTheme")==="dark"?"dark":"light",false);$("#themeBtn").onclick=()=>setTheme(document.documentElement.classList.contains("dark")?"light":"dark");window.addEventListener("message",event=>{if(event.origin!==window.location.origin)return;const theme=event.data?.theme;if(event.data?.type==="sancharakaya-theme"&&(theme==="dark"||theme==="light"))setTheme(theme,false);if(event.data?.type==="sancharakaya-send-prompt"&&event.data.prompt)sendChat(event.data.prompt)})}
   function openTab(id){$$(".tab").forEach(x=>x.classList.toggle("active",x.dataset.tab===id));$$(".page").forEach(x=>x.classList.toggle("active",x.id===id));if(id==="saved")renderSaved();if(id==="explore"&&!$("#exploreGrid").children.length)explore("");if(id==="itinerary")renderItinerary(lastItinerary||loadJSON("sancharakayaItinerary",null));setTimeout(()=>map?.invalidateSize(),80)}
@@ -45,12 +77,17 @@
     $("#clearMemoryBtn").onclick=()=>{memory={...defaults};chatHistory=[];saveJSON("sancharakayaMemory",memory);localStorage.removeItem("sancharakayaChat");fillProfile();$("#chatLog").innerHTML="";addMessage("bot","Memory cleared. Tell me what kind of Sri Lanka trip you want.")};
   }
   function renderMemory(){const p=[];if(memory.starting_location)p.push(`From ${memory.starting_location}`);if(memory.days)p.push(`${memory.days} days`);if(memory.group_type)p.push(memory.group_type);if(memory.daily_budget_lkr)p.push(`LKR ${Number(memory.daily_budget_lkr).toLocaleString()}/day`);if(memory.interests?.length)p.push(...memory.interests.slice(0,4));if(memory.hidden_gems)p.push("hidden gems");$("#memoryPills").innerHTML=p.map(x=>`<span>${esc(x)}</span>`).join("")}
-  async function checkBackend(){const b=$("#backendBadge");if(!API){b.className="status-badge error";b.textContent="Backend URL needed";return}try{const d=await apiFetch("/api/health",{},10000);b.className=`status-badge ${d.ai_configured?"ok":"error"}`;b.textContent=d.ai_configured?`Assistant ready · ${d.knowledge_base_places} places`:"Travel tools ready"}catch{b.className="status-badge error";b.textContent=navigator.onLine?"Assistant offline":"Offline mode"}}
+  async function checkBackend(){const b=$("#backendBadge");if(!API){const places=await loadStaticPlaces();b.className="status-badge ok";b.textContent=`Offline guide ready · ${places.length||34} places`;return}try{const d=await apiFetch("/api/health",{},10000);b.className=`status-badge ${d.ai_configured?"ok":"error"}`;b.textContent=d.ai_configured?`Assistant ready · ${d.knowledge_base_places} places`:"Travel tools ready"}catch{const places=await loadStaticPlaces();b.className="status-badge ok";b.textContent=`Offline guide ready · ${places.length||34} places`}}
   function addMessage(sender,text){const n=document.createElement("div");n.className=`msg ${sender}`;n.innerHTML=sender==="bot"?fmt(text):esc(text);$("#chatLog").appendChild(n);$("#chatLog").scrollTop=$("#chatLog").scrollHeight;return n}
   function typing(){const n=document.createElement("div");n.className="msg bot";n.id="typingMessage";n.innerHTML='<span class="typing"><i></i><i></i><i></i></span>';$("#chatLog").appendChild(n);$("#chatLog").scrollTop=$("#chatLog").scrollHeight}
   function stopTyping(){$("#typingMessage")?.remove()}
   async function sendChat(text){
     const prompt=String(text||"").trim();if(!prompt)return;readProfile();addMessage("user",prompt);chatHistory.push({role:"user",content:prompt});if(chatHistory.length>18)chatHistory=chatHistory.slice(-18);saveJSON("sancharakayaChat",chatHistory);typing();$("#sendBtn").disabled=true;
+    if(!API){
+      try{const reply=await staticAssistantReply(prompt);stopTyping();addMessage("bot",reply);chatHistory.push({role:"assistant",content:reply});saveJSON("sancharakayaChat",chatHistory)}
+      finally{$("#sendBtn").disabled=false}
+      return;
+    }
     try{
       const d=await apiFetch("/api/agent/chat",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({messages:chatHistory,memory})},45000);stopTyping();memory={...memory,...(d.memory||{})};saveJSON("sancharakayaMemory",memory);fillProfile();addMessage("bot",d.text||"No response.");chatHistory.push({role:"assistant",content:d.text||""});saveJSON("sancharakayaChat",chatHistory);renderDeck(d);
       if(d.itinerary){lastItinerary=d.itinerary;saveJSON("sancharakayaItinerary",d.itinerary)}if(d.budget)saveJSON("sancharakayaBudget",d.budget);
@@ -69,7 +106,7 @@
   function renderActions(actions){const btn=[];for(const a of actions){if(a.type==="train"&&a.url)btn.push(["Train schedules",a.url]);if(a.type==="ride"){if(a.uber_web_url)btn.push(["Open Uber",a.uber_web_url]);if(a.uber_app_url)btn.push(["Open Uber App",a.uber_app_url]);if(a.maps_directions_url)btn.push(["View Route",a.maps_directions_url])}if(a.type==="transport"){if(a.directions?.driving)btn.push(["Driving route",a.directions.driving]);if(a.directions?.transit)btn.push(["Transit route",a.directions.transit]);if(a.train_schedule)btn.push(["Train schedules",a.train_schedule])}}$("#actionDeck").innerHTML=btn.map(([l,u])=>`<a class="action-btn" href="${esc(u)}" target="_blank" rel="noopener">${esc(l)} →</a>`).join("")}
   function initMap(){if(!window.L)return;map=L.map("map",{zoomControl:true}).setView([7.8731,80.7718],7);L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:18,attribution:"&copy; OpenStreetMap contributors"}).addTo(map)}
   function updateMap(items){if(!map||!items.length)return;markers.forEach(m=>m.remove());markers=[];const bounds=[],unique=[...new Map(items.map(x=>[`${x.coordinates.lat},${x.coordinates.lng}`,x])).values()];unique.forEach(x=>{const{lat,lng}=x.coordinates,m=L.marker([lat,lng]).addTo(map).bindPopup(`<strong>${esc(x.name)}</strong>`);markers.push(m);bounds.push([lat,lng])});bounds.length===1?map.setView(bounds[0],11):map.fitBounds(bounds,{padding:[25,25]});$("#mapEmpty").style.display="none"}
-  async function explore(q){$("#exploreGrid").innerHTML='<div class="empty-state">Searching grounded destination records...</div>';try{const p=new URLSearchParams({q:q||""});if(memory.hidden_gems)p.set("hidden","true");if(memory.interests?.length)p.set("interests",memory.interests.join(","));const d=await apiFetch(`/api/places?${p}`,{},18000);renderPlaces(d.matches||[],$("#exploreGrid"))}catch(e){$("#exploreGrid").innerHTML=`<div class="empty-state">Destination search is unavailable right now. Saved places and the main planner still work.</div>`}}
+  async function explore(q){$("#exploreGrid").innerHTML='<div class="empty-state">Searching grounded destination records...</div>';try{if(!API){renderPlaces(localPlaceMatches(await loadStaticPlaces(),q),$("#exploreGrid"));return}const p=new URLSearchParams({q:q||""});if(memory.hidden_gems)p.set("hidden","true");if(memory.interests?.length)p.set("interests",memory.interests.join(","));const d=await apiFetch(`/api/places?${p}`,{},18000);renderPlaces(d.matches||[],$("#exploreGrid"))}catch(e){$("#exploreGrid").innerHTML=`<div class="empty-state">Destination search is unavailable right now. Saved places and the main planner still work.</div>`}}
   function renderSaved(){savedPlaces.length?renderPlaces(savedPlaces,$("#savedGrid")):$("#savedGrid").innerHTML='<div class="empty-state"><h3>No saved places</h3><p>Save destination cards from AI Guide or Explore.</p></div>'}
   function renderItinerary(plan){lastItinerary=plan||lastItinerary;const view=$("#itineraryView"),empty=$("#itineraryEmpty");if(!lastItinerary?.plan?.length){empty.classList.remove("hidden");view.innerHTML="";return}empty.classList.add("hidden");view.innerHTML=lastItinerary.plan.map(d=>`<article class="day-card"><div class="day-number">D${d.day}</div><div><h3>${esc(d.name)}</h3><p>${esc(d.region)} · ${esc(d.best_time_of_day)} · ${esc(d.suggested_visit_duration)}</p><p>${esc(d.why_it_fits)}</p><div class="day-tags">${(d.focus||[]).map(t=>`<span class="chip">${esc(t)}</span>`).join("")}</div></div><div class="day-actions"><a class="secondary-btn" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(d.name+", Sri Lanka")}">Map</a></div></article>`).join("");updateMap(lastItinerary.plan.map(d=>({name:d.name,coordinates:d.coordinates})));renderBudget(loadJSON("sancharakayaBudget",null))}
   function renderBudget(b){const c=$("#budgetCard");if(!b?.available){c.classList.add("hidden");return}c.classList.remove("hidden");c.innerHTML=`<span class="eyebrow">USER BUDGET ENVELOPE</span><h3>LKR ${Number(b.trip_budget_envelope).toLocaleString()} total</h3><p>This allocates the budget you supplied; it is not live market pricing.</p><div class="budget-grid">${Object.entries(b.suggested_allocation||{}).map(([k,v])=>`<div><strong>${esc(k)}</strong><span>LKR ${Number(v).toLocaleString()}</span></div>`).join("")}</div>`}

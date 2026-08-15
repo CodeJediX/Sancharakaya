@@ -36,6 +36,8 @@ Health checks:
 
 GitHub Pages hosts only static files. It cannot run the Node/Gemini backend.
 
+When `PRODUCTION_API_BASE_URL` is empty, the hosted assistant automatically runs in offline guide mode using the bundled Sri Lanka destination data. This keeps chat and Explore usable on GitHub Pages without exposing secrets.
+
 Deploy `virtual-assistant/server` to a Node-capable host such as Render, Railway, Fly.io, a VPS, or another backend platform.
 
 Set backend environment variables on that host:
@@ -84,4 +86,4 @@ Secrets belong only in local `.env` files or hosted backend environment variable
 
 ## Fallback Behavior
 
-If the backend is not configured, offline and static travel tools remain usable. Live AI, weather, and nearby discovery require the deployed backend and internet access.
+If the backend is not configured, offline chat, static destination search, saved places, and safety guidance remain usable. Live Gemini answers, weather, and nearby discovery require the deployed backend and internet access.
