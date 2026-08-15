@@ -38,7 +38,7 @@ GitHub Pages hosts only static files. It cannot run the Node/Gemini backend.
 
 When `PRODUCTION_API_BASE_URL` is empty, the hosted assistant automatically runs in offline guide mode using the bundled Sri Lanka destination data. This keeps chat and Explore usable on GitHub Pages without exposing secrets.
 
-Deploy `virtual-assistant/server` to a Node-capable host such as Render, Railway, Fly.io, a VPS, or another backend platform.
+Deploy the backend to a Node-capable host such as Render, Railway, Fly.io, a VPS, or another backend platform. This repository includes `render.yaml`, so Render can deploy the existing Docker backend from the repository root.
 
 Set backend environment variables on that host:
 
@@ -57,6 +57,8 @@ PRODUCTION_API_BASE_URL: "https://your-deployed-backend.example.com"
 ```
 
 Never use `http://localhost:8787` as the production backend URL.
+
+Until this production URL is set, the GitHub Pages chatbot uses offline guide mode. That is expected and prevents your Gemini key from being exposed in public frontend code.
 
 ## Security Rules
 

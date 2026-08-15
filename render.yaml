@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: sancharakaya-gemini-backend
+    env: docker
+    plan: free
+    rootDir: virtual-assistant
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemini-3.6-flash
+      - key: ALLOWED_ORIGIN
+        value: https://codejedix.github.io
+      - key: RATE_LIMIT_PER_MINUTE
+        value: "60"
+      - key: ENABLE_NEARBY_OSM
+        value: "true"
