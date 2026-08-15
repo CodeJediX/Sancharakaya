@@ -131,7 +131,7 @@ function serveStatic(req, res) {
   fs.createReadStream(file).pipe(res);
 }
 
-const server = http.createServer(async (req, res) => {
+async function handleRequest(req, res) {
   if (req.method === "OPTIONS") {
     res.writeHead(204, cors(req));
     res.end();
@@ -240,9 +240,14 @@ const server = http.createServer(async (req, res) => {
         : error.message
     });
   }
-});
+}
 
-server.listen(PORT, () => {
-  console.log(`Sancharakaya Gemini backend running at http://localhost:${PORT}`);
-  console.log(`AI configured: ${GEMINI_API_KEY ? "yes - Google Gemini" : "no - add GEMINI_API_KEY to .env"}`);
-});
+if (require.main === module) {
+  const server = http.createServer(handleRequest);
+  server.listen(PORT, () => {
+    console.log(`Sancharakaya Gemini backend running at http://localhost:${PORT}`);
+    console.log(`AI configured: ${GEMINI_API_KEY ? "yes - Google Gemini" : "no - add GEMINI_API_KEY to .env"}`);
+  });
+}
+
+module.exports = handleRequest;

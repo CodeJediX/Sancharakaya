@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "functions": {
+    "api/[...path].js": {
+      "maxDuration": 60
+    }
+  },
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/[...path].js"
+    },
+    {
+      "src": "/health",
+      "dest": "/api/[...path].js"
+    }
+  ]
+}

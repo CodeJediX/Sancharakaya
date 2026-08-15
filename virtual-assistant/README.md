@@ -38,7 +38,21 @@ GitHub Pages hosts only static files. It cannot run the Node/Gemini backend.
 
 When `PRODUCTION_API_BASE_URL` is empty, the hosted assistant automatically runs in offline guide mode using the bundled Sri Lanka destination data. This keeps chat and Explore usable on GitHub Pages without exposing secrets.
 
-Deploy the backend to a Node-capable host such as Render, Railway, Fly.io, a VPS, or another backend platform. This repository includes `render.yaml`, so Render can deploy the existing Docker backend from the repository root.
+Deploy the backend to a Node-capable host such as Vercel, Render, Railway, Fly.io, a VPS, or another backend platform.
+
+### Option A: Vercel
+
+This repository includes `vercel.json` and `api/[...path].js`, so Vercel can run the Gemini backend as serverless API routes.
+
+1. Import `CodeJediX/Sancharakaya` in Vercel.
+2. Add the environment variables below.
+3. Deploy.
+4. Confirm `https://your-project.vercel.app/api/health` returns JSON.
+5. Set `PRODUCTION_API_BASE_URL` in `virtual-assistant/js/config.js` to `https://your-project.vercel.app`.
+
+### Option B: Render
+
+This repository also includes `render.yaml`, so Render can deploy the existing Docker backend from the repository root.
 
 Set backend environment variables on that host:
 
