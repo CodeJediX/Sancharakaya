@@ -181,51 +181,83 @@
 
     const priceData = [
       {
+        category: "Transport",
         item: "Tuk-tuk short city ride (1-3 km)",
         fair: "LKR 100-300",
+        fairMin: 100,
+        fairMax: 300,
         tourist: "LKR 500-1,500",
+        keywords: ["tuk", "tuk-tuk", "threewheel", "three-wheeler", "ride", "km"],
         notes: "Use meter or ride-hailing where available, and agree the fare first."
       },
       {
+        category: "Transport",
         item: "Airport to Colombo private car",
         fair: "LKR 3,500-6,000",
+        fairMin: 3500,
+        fairMax: 6000,
         tourist: "LKR 8,000+",
+        keywords: ["airport", "cmb", "colombo", "taxi", "car"],
         notes: "Pre-book or use the official airport taxi counter."
       },
       {
+        category: "Tickets",
         item: "Kandy to Ella train (standard classes)",
         fair: "LKR 500-2,500 depending on class",
+        fairMin: 500,
+        fairMax: 2500,
         tourist: "LKR 5,000+ via unofficial agents",
+        keywords: ["train", "kandy", "ella", "railway", "ticket"],
         notes: "Use official railway pricing and avoid scalpers."
       },
       {
+        category: "Food",
         item: "Local meal (rice and curry)",
         fair: "LKR 700-1,500",
+        fairMin: 700,
+        fairMax: 1500,
         tourist: "LKR 2,500+",
+        keywords: ["meal", "rice", "curry", "food", "restaurant", "lunch", "dinner"],
         notes: "Local eateries are usually cheaper than tourist-focused cafes."
       },
       {
+        category: "Tickets",
         item: "Sigiriya entry fee (foreign visitor)",
         fair: "Check official current rate at ticket counter",
+        fairMin: null,
+        fairMax: null,
         tourist: "Unofficial extras or false shortcuts",
+        keywords: ["sigiriya", "entry", "ticket", "entrance", "heritage"],
         notes: "Buy tickets only at official counters; guides are optional but should be licensed."
       },
       {
+        category: "Tours",
         item: "Half-day local guide",
         fair: "LKR 5,000-10,000",
+        fairMin: 5000,
+        fairMax: 10000,
         tourist: "LKR 15,000+",
+        keywords: ["guide", "half-day", "tour", "licensed"],
         notes: "Use licensed guides and agree scope before starting."
       },
       {
+        category: "Tours",
         item: "Whale watching tour",
         fair: "LKR 15,000-25,000",
+        fairMin: 15000,
+        fairMax: 25000,
         tourist: "Very low-cost unsafe boats",
+        keywords: ["whale", "watching", "boat", "mirissa", "tour"],
         notes: "Choose operators with safety standards and responsible wildlife practices."
       },
       {
+        category: "Shopping",
         item: "Souvenir / handicraft",
         fair: "LKR 1,500-7,500 depending on craft",
+        fairMin: 1500,
+        fairMax: 7500,
         tourist: "Inflated antique claims",
+        keywords: ["souvenir", "handicraft", "craft", "gem", "spice", "antique", "shop"],
         notes: "Avoid protected wildlife products and compare prices across shops."
       }
     ];

@@ -1,6 +1,20 @@
 ﻿    function bindPrices() {
-      document.getElementById("priceFilter").addEventListener("input", (e) => {
-        renderPrices(e.target.value.toLowerCase());
+      document.getElementById("priceFilter")?.addEventListener("input", () => {
+        renderPrices();
+      });
+      document.querySelectorAll(".price-filter").forEach(button => {
+        button.addEventListener("click", () => {
+          document.querySelectorAll(".price-filter").forEach(item => item.classList.remove("active"));
+          button.classList.add("active");
+          renderPrices();
+        });
+      });
+      document.getElementById("quoteCheckBtn")?.addEventListener("click", runQuoteCheck);
+      document.getElementById("quoteCheckInput")?.addEventListener("keydown", event => {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          runQuoteCheck();
+        }
       });
     }
 
@@ -90,15 +104,37 @@
       button.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
     }
 
-    function renderPrices(filter = "") {
-      const tbody = document.querySelector("#priceTable tbody");
+    function activePriceItems() {
+      const search = (document.getElementById("priceFilter")?.value || "").toLowerCase();
+      const category = document.querySelector(".price-filter.active")?.dataset.priceFilter || "all";
+      return priceData.filter(p => {
+        const categoryMatch = category === "all" || p.category === category;
+        const searchText = `${p.item} ${p.fair} ${p.tourist} ${p.notes} ${(p.keywords || []).join(" ")}`.toLowerCase();
+        return categoryMatch && searchText.includes(search);
+      });
+    }
 
-      const rows = priceData
-        .filter(p =>
-          (p.item + " " + p.fair + " " + p.notes).toLowerCase().includes(filter)
-        )
+    function renderPrices() {
+      const tbody = document.querySelector("#priceTable tbody");
+      const cardGrid = document.getElementById("priceCards");
+      if (!tbody) return;
+      const items = activePriceItems();
+
+      if (cardGrid) {
+        cardGrid.innerHTML = items.slice(0, 4).map(p => `
+          <article class="price-mini-card">
+            <span>${p.category}</span>
+            <strong>${p.item}</strong>
+            <b>${p.fair}</b>
+            <small>${p.notes}</small>
+          </article>
+        `).join("") || `<div class="price-empty">No quick cards match this filter.</div>`;
+      }
+
+      const rows = items
         .map(p => `
           <tr>
+            <td><span class="price-type-pill">${p.category}</span></td>
             <td>${p.item}</td>
             <td>${p.fair}</td>
             <td>${p.tourist}</td>
@@ -107,7 +143,82 @@
         `)
         .join("");
 
-      tbody.innerHTML = rows || `<tr><td colspan="4">No matching price entries found.</td></tr>`;
+      tbody.innerHTML = rows || `<tr><td colspan="5">No matching price entries found.</td></tr>`;
+    }
+
+    function numberFromPriceText(text) {
+      const matches = String(text || "").match(/\d[\d,]*/g);
+      if (!matches?.length) return null;
+      return Math.max(...matches.map(value => Number(value.replace(/,/g, ""))).filter(Number.isFinite));
+    }
+
+    function bestPriceMatch(text) {
+      const lower = text.toLowerCase();
+      return priceData
+        .map(item => ({
+          item,
+          score: (item.keywords || []).reduce((sum, keyword) => sum + (lower.includes(keyword) ? 1 : 0), 0)
+        }))
+        .filter(match => match.score > 0)
+        .sort((a, b) => b.score - a.score)[0]?.item || null;
+    }
+
+    function runQuoteCheck() {
+      const input = document.getElementById("quoteCheckInput");
+      const result = document.getElementById("quoteCheckResult");
+      if (!input || !result) return;
+      const text = input.value.trim();
+      const quoted = numberFromPriceText(text);
+      const match = bestPriceMatch(text);
+
+      if (!text) {
+        result.className = "quote-result";
+        result.textContent = "Type an offer first, then Sancharakaya will compare it with common traveler price ranges.";
+        return;
+      }
+
+      if (!match) {
+        result.className = "quote-result medium";
+        result.innerHTML = `<strong>Not enough context yet.</strong><span>Add the service type, distance or place, and LKR amount. Example: tuk-tuk 2 km for LKR 1500.</span>`;
+        return;
+      }
+
+      const hasRange = Number.isFinite(match.fairMax);
+      const ratio = hasRange && quoted ? quoted / match.fairMax : 0;
+      let level = "low";
+      let title = "Looks within the normal planning range.";
+      if (!quoted || !hasRange) {
+        level = "medium";
+        title = "Verify with an official or trusted local source.";
+      } else if (ratio > 2) {
+        level = "high";
+        title = "Likely high for this guide range.";
+      } else if (ratio > 1.25) {
+        level = "medium";
+        title = "A little high. Compare before accepting.";
+      }
+
+      result.className = `quote-result ${level}`;
+      result.innerHTML = `
+        <strong>${title}</strong>
+        <span><b>Matched:</b> ${match.item}</span>
+        <span><b>Guide range:</b> ${match.fair}</span>
+        <span><b>Next move:</b> ${match.notes}</span>
+        <button type="button" class="quote-ask-btn" id="quoteAskAssistant">Ask assistant about this quote</button>
+      `;
+
+      document.getElementById("quoteAskAssistant")?.addEventListener("click", () => {
+        activateTab("chat");
+        setTimeout(() => {
+          const frame = document.querySelector(".assistant-frame");
+          frame?.scrollIntoView({ behavior: "smooth", block: "start" });
+          try {
+            frame?.contentWindow?.postMessage({ type: "sancharakaya-send-prompt", prompt: `Is this Sri Lanka travel quote fair? ${text}. Compare it with ${match.item} and advise what to do.` }, window.location.origin);
+          } catch {
+            // The traveler can still type the same question in the assistant.
+          }
+        }, 80);
+      });
     }
 
     function renderSafety() {

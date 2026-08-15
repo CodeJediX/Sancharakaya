@@ -256,21 +256,65 @@
     </section>
     <!-- PRICES -->
     <section id="prices" class="hidden">
-      <div class="panel">
-        <span class="eyebrow">Local price confidence</span>
-        <h2>Fair-Price Guide</h2>
-        <p class="muted">
-          Check common travel costs before you negotiate, book, or accept a quote.
-        </p>
+      <div class="panel price-guide-panel">
+        <div class="section-heading price-heading">
+          <div>
+            <span class="eyebrow">Local price confidence</span>
+            <h2>Fair-Price Guide</h2>
+            <p class="muted">
+              Check common travel costs before you negotiate, book, or accept a quote.
+            </p>
+          </div>
+          <span class="price-live-pill">Quote confidence tool</span>
+        </div>
 
-        <input id="priceFilter" type="text" placeholder="Search prices... e.g. tuk-tuk, train, guide" />
+        <div class="price-hero-grid">
+          <article class="price-check-card">
+            <span class="eyebrow">Quick quote check</span>
+            <h3>Is this offer fair?</h3>
+            <p>Type the offer in plain language and Sancharakaya will compare it against common traveler price patterns.</p>
+            <div class="price-check-row">
+              <input id="quoteCheckInput" type="text" placeholder="e.g. tuk-tuk 2 km for LKR 1500" />
+              <button id="quoteCheckBtn" class="btn" type="button">Check quote</button>
+            </div>
+            <div id="quoteCheckResult" class="quote-result">Try a tuk-tuk, airport taxi, train, guide, meal, safari, whale tour, or souvenir offer.</div>
+          </article>
 
-        <div style="height:16px"></div>
+          <div class="price-feature-grid">
+            <div class="price-feature-card">
+              <strong>Negotiate calmly</strong>
+              <span>Confirm final LKR price, route, inclusions, and waiting time before accepting.</span>
+            </div>
+            <div class="price-feature-card">
+              <strong>Use official counters</strong>
+              <span>For trains, attraction tickets, and airport taxis, compare with official counters first.</span>
+            </div>
+            <div class="price-feature-card">
+              <strong>Spot pressure signals</strong>
+              <span>Be careful with “counter closed”, “special entrance”, no meter, or urgent limited offers.</span>
+            </div>
+          </div>
+        </div>
 
-        <div class="table-wrap">
+        <div class="price-toolbar">
+          <div class="price-filter-row" aria-label="Price categories">
+            <button class="price-filter active" data-price-filter="all" type="button">All</button>
+            <button class="price-filter" data-price-filter="Transport" type="button">Transport</button>
+            <button class="price-filter" data-price-filter="Tickets" type="button">Tickets</button>
+            <button class="price-filter" data-price-filter="Food" type="button">Food</button>
+            <button class="price-filter" data-price-filter="Tours" type="button">Tours</button>
+            <button class="price-filter" data-price-filter="Shopping" type="button">Shopping</button>
+          </div>
+          <input id="priceFilter" type="text" placeholder="Search prices... e.g. tuk-tuk, train, guide" />
+        </div>
+
+        <div id="priceCards" class="price-card-grid"></div>
+
+        <div class="table-wrap price-table-wrap">
           <table id="priceTable">
             <thead>
               <tr>
+                <th>Type</th>
                 <th>Item / service</th>
                 <th>Fair range</th>
                 <th>Typical tourist overcharge</th>
@@ -280,6 +324,7 @@
             <tbody></tbody>
           </table>
         </div>
+        <p class="price-disclaimer">Prices are practical planning ranges, not live official tariffs. Always verify current ticket fees, fuel costs, exchange rates, and seasonal availability before paying.</p>
       </div>
     </section>
 
