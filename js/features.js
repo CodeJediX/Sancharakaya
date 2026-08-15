@@ -164,6 +164,8 @@
     }
 
     function runQuoteCheck() {
+      localStorage.setItem("sancharakayaPriceUsed", "true");
+      window.SancharakayaAuth?.renderProfile();
       const input = document.getElementById("quoteCheckInput");
       const result = document.getElementById("quoteCheckResult");
       if (!input || !result) return;
@@ -297,6 +299,8 @@
     }
 
     function runScamCheck() {
+      localStorage.setItem("sancharakayaSafetyUsed", "true");
+      window.SancharakayaAuth?.renderProfile();
       const input = document.getElementById("scamCheckInput");
       const result = document.getElementById("scamCheckResult");
       if (!input || !result) return;

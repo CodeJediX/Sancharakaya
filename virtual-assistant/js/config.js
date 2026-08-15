@@ -9,9 +9,6 @@
     // Production Gemini backend. GitHub Pages must never call a visitor's localhost.
     PRODUCTION_API_BASE_URL: "https://sancharakaya-kx2n.vercel.app",
 
-    // Add your Google OAuth Web Client ID here to enable Google Sign-In.
-    GOOGLE_CLIENT_ID: "",
-
     get API_BASE_URL() {
       if (isLocal) return this.LOCAL_API_BASE_URL;
       return this.PRODUCTION_API_BASE_URL;

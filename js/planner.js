@@ -4,6 +4,7 @@
 
     function init() {
       setDefaultDate();
+      window.SancharakayaAuth?.init();
       bindTabs();
       bindPlanner();
       bindChat();
@@ -458,6 +459,7 @@
 
       document.getElementById("saveBtn").addEventListener("click", () => {
         localStorage.setItem("sriGuideTrip", JSON.stringify({ result, params }));
+        window.SancharakayaAuth?.renderProfile();
         setActionStatus("Itinerary saved in this browser.");
       });
 

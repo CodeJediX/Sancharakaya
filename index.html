@@ -29,6 +29,35 @@
     </div>
   </div>
 
+  <div id="authGate" class="auth-gate hidden" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <div class="auth-glass">
+      <div class="auth-brand">
+        <img src="assets/main-logo.webp" alt="Sancharakaya logo">
+        <span class="eyebrow">Traveler account</span>
+      </div>
+      <h2 id="authTitle">Welcome to Sancharakaya</h2>
+      <p class="muted">Login or create your free travel profile to enter the Sri Lanka planner, assistant, safety tools, badges, and saved trip workspace.</p>
+      <div class="auth-tabs" role="tablist" aria-label="Authentication mode">
+        <button class="active" id="loginModeBtn" type="button">Login</button>
+        <button id="signupModeBtn" type="button">Sign up</button>
+      </div>
+      <form id="authForm" class="auth-form">
+        <label>
+          Email
+          <input id="authEmail" type="email" autocomplete="email" required placeholder="you@example.com">
+        </label>
+        <label>
+          Password
+          <input id="authPassword" type="password" autocomplete="current-password" required minlength="6" placeholder="Minimum 6 characters">
+        </label>
+        <button class="btn" id="authSubmitBtn" type="submit">Login</button>
+      </form>
+      <button class="btn btn-secondary auth-google-btn" id="authGoogleBtn" type="button">Continue with Google</button>
+      <p id="authStatus" class="auth-status"></p>
+      <p id="authConfigNotice" class="auth-config-notice hidden">Supabase is not configured yet. Add your Supabase URL and publishable key in <code>js/config.js</code>.</p>
+    </div>
+  </div>
+
   <header class="hero">
     <div class="hero-glow hero-glow-one" aria-hidden="true"></div>
     <div class="hero-glow hero-glow-two" aria-hidden="true"></div>
@@ -93,6 +122,10 @@
       <button class="nav-btn" data-tab="sustainable">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 019.8 6.1C15.5 5 20 5 20 5s0 4.5-1.1 10.2A7 7 0 0111 20z"/><path d="M2 21c0-4 3-8 9-9"/></svg>
         Sustainable Matching
+      </button>
+      <button class="nav-btn" data-tab="profile">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21a8 8 0 10-16 0"/><circle cx="12" cy="7" r="4"/></svg>
+        User Profile
       </button>
       <button class="nav-btn nav-theme-btn" id="themeToggle" type="button" aria-label="Switch to dark mode">
         <span aria-hidden="true">◐</span>
@@ -441,16 +474,49 @@
         </div>
       </div>
     </section>
+
+    <!-- PROFILE -->
+    <section id="profile" class="hidden">
+      <div class="panel main-profile-panel">
+        <div class="section-heading profile-main-heading">
+          <div>
+            <span class="eyebrow">Your travel identity</span>
+            <h2>User Profile</h2>
+            <p class="muted">Your account unlocks a saved workspace for trip preferences, assistant chats, saved places, and travel achievements.</p>
+          </div>
+          <button id="mainSignOutBtn" class="btn btn-secondary" type="button">Sign out</button>
+        </div>
+        <div class="main-profile-grid">
+          <article class="main-profile-card">
+            <div id="mainProfileAvatar" class="main-profile-avatar">SK</div>
+            <div>
+              <h3 id="mainProfileName">Traveler</h3>
+              <p id="mainProfileEmail" class="muted">Signed in traveler</p>
+              <div id="mainProfilePills" class="profile-pill-row"></div>
+            </div>
+          </article>
+          <div class="main-profile-stats">
+            <div><strong id="mainTripsCount">0</strong><span>Trips planned</span></div>
+            <div><strong id="mainChatsCount">0</strong><span>Assistant chats</span></div>
+            <div><strong id="mainBadgeCount">0</strong><span>Badges earned</span></div>
+          </div>
+        </div>
+        <div id="mainBadgeGrid" class="main-badge-grid"></div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
     <strong>Sancharakaya (සංචාරකයා)</strong> — AI-powered Sri Lanka travel planning, price guidance, and safety support.
   </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/config.js?v=auth1"></script>
   <script src="js/data.js?v=safety1"></script>
   <script src="js/planner.js?v=safety1"></script>
   <script src="js/api.js?v=safety1"></script>
   <script src="js/chat.js?v=safety1"></script>
+  <script src="js/auth.js?v=auth1"></script>
   <script src="js/features.js?v=safety1"></script>
 </body>
 </html>
