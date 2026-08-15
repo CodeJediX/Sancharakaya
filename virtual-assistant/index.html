@@ -109,8 +109,18 @@
 
         <aside class="map-panel glass">
           <div class="panel-title"><div><span class="eyebrow">LIVE CONTEXT</span><h2>Trip map</h2></div></div>
+          <div class="map-tools" aria-label="Map filters">
+            <button class="active" data-map-filter="popular" type="button">Popular</button>
+            <button data-map-filter="culture" type="button">Culture</button>
+            <button data-map-filter="nature" type="button">Nature</button>
+            <button data-map-filter="beach" type="button">Beach</button>
+            <button data-map-filter="wildlife" type="button">Wildlife</button>
+            <button data-map-filter="saved" type="button">Saved</button>
+          </div>
+          <p class="map-insight">Most-visited tourist stops are shown first, with filters for culture, nature, beaches, wildlife and saved places.</p>
           <div id="map"></div>
-          <div id="mapEmpty" class="map-empty">Recommended places will appear here.</div>
+          <div id="mapEmpty" class="map-empty">Popular tourist places are shown by default.</div>
+          <div id="mapPlaceList" class="map-place-list"></div>
           <div class="trust-box"><strong>Grounded guidance</strong><p>Destination facts come from curated Sri Lanka records. Weather and nearby listings use live sources when available. Always verify official fares, opening hours, tickets, and travel rules before departure.</p></div>
         </aside>
       </div>
