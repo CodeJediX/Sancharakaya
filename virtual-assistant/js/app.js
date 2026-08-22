@@ -84,9 +84,34 @@
     }
     return "Offline travel guide mode: I can still help with Sri Lanka routes, safety basics, fair-price awareness, etiquette, and saved destinations from the built-in guide. For live Gemini answers, deploy the backend and set the production API URL.";
   }
+  async function staticCouncil(prompt){
+    const places=await loadStaticPlaces(),matches=localPlaceMatches(places,prompt).slice(0,5),route=matches.length?matches.map(p=>p.name).slice(0,4):["Sigiriya","Kandy","Ella","Galle Fort"];
+    const agents=[
+      {id:"route_architect",name:"Route Architect",role:"Turns goals into a practical route.",capabilities:["itinerary fit","pacing","regions"]},
+      {id:"safety_guardian",name:"Safety Guardian",role:"Checks safety, scams and emergency context.",capabilities:["risk signals","safe next steps"]},
+      {id:"fair_price_analyst",name:"Fair-Price Analyst",role:"Keeps budget and quote confidence visible.",capabilities:["budget","overcharge awareness"]},
+      {id:"culture_local",name:"Culture Local",role:"Adds etiquette, heritage, food and local context.",capabilities:["culture","religion","food"]},
+      {id:"eco_matchmaker",name:"Eco Matchmaker",role:"Finds responsible local choices.",capabilities:["sustainability","hidden gems"]}
+    ];
+    const reports=[
+      ["Route Architect",`Use ${route.join(" -> ")} as the first route spine.`,["Keep travel days compact.","Add one flexible half-day.","Save the best stops to the map."],["Verify live travel time."]],
+      ["Safety Guardian","Confirm prices and use official counters where possible.",["Keep emergency numbers ready: 119, 1990, 1912.","Avoid pressure sales and unofficial ticket shortcuts.","Share late-night movement with your hotel."],["Walk away from urgent cash-only pressure."]],
+      ["Fair-Price Analyst","Use the Fair-Price Guide before rides, guides and tours.",["Ask for final LKR price first.","Clarify inclusions and waiting time.","Keep a small buffer for tickets."],["Live prices must be verified before payment."]],
+      ["Culture Local","Plan around temple etiquette and local timing.",["Carry modest clothing.","Start heritage visits early.","Try local meals away from the busiest frontage."],["Religious sites may require shoes and hats removed."]],
+      ["Eco Matchmaker","Balance famous highlights with responsible local stops.",["Choose licensed local guides.","Avoid exploitative wildlife experiences.","Add hidden gems only when route logic stays practical."],["Do not overload the route just to add more stops."]]
+    ].map((r,i)=>({agent_id:agents[i].id,agent_name:r[0],headline:r[1],confidence:.72,recommendations:r[2],watchouts:r[3],handoff_note:`${r[0]} completed an offline council review.`}));
+    return {
+      protocol:{name:"Sancharakaya Agent Council",pattern:"Offline A2A-inspired specialist workflow",version:"1.0.0"},
+      request:prompt,agents,
+      handoffs:reports.flatMap(r=>[{from:"sancharakaya_orchestrator",to:r.agent_id,status:"sent",task:"Specialist review"},{from:r.agent_id,to:"sancharakaya_orchestrator",status:"completed",headline:r.headline}]),
+      reports,
+      synthesis:{summary:`The council recommends a practical Sri Lanka plan around ${route.join(" -> ")} with safety checks, fair-price awareness and responsible local choices.`,next_steps:["Refine days, start point and budget.","Generate the itinerary from the AI Guide.","Check safety and fair-price tools before paying.","Save your strongest places to the map."],agentic_reasoning:reports.map(r=>`${r.agent_name}: ${r.headline}`),confidence:.72},
+      places:matches,provider:"Static Council Fallback"
+    };
+  }
   function setTheme(theme,notifyParent=true){const isDark=theme==="dark";document.documentElement.classList.toggle("dark",isDark);localStorage.setItem("sancharakayaTheme",isDark?"dark":"light");const b=$("#themeBtn");if(b){b.textContent=isDark?"Light":"Dark";b.setAttribute("aria-label",isDark?"Switch to light mode":"Switch to dark mode")}if(notifyParent&&window.parent!==window)window.parent.postMessage({type:"sancharakaya-theme-change",theme:isDark?"dark":"light"},window.location.origin)}
   function initTheme(){setTheme(localStorage.getItem("sancharakayaTheme")==="dark"?"dark":"light",false);$("#themeBtn").onclick=()=>setTheme(document.documentElement.classList.contains("dark")?"light":"dark");window.addEventListener("message",event=>{if(event.origin!==window.location.origin)return;const theme=event.data?.theme;if(event.data?.type==="sancharakaya-theme"&&(theme==="dark"||theme==="light"))setTheme(theme,false);if(event.data?.type==="sancharakaya-send-prompt"&&event.data.prompt)sendChat(event.data.prompt);if(event.data?.type==="sancharakaya-auth"){currentUser=event.data.user||null;if(currentUser)saveJSON("sancharakayaCurrentUser",currentUser);else localStorage.removeItem("sancharakayaCurrentUser");afterSignIn()}})}
-  function openTab(id){$$(".tab").forEach(x=>x.classList.toggle("active",x.dataset.tab===id));$$(".page").forEach(x=>x.classList.toggle("active",x.id===id));if(id==="saved")renderSaved();if(id==="profile")renderProfile();if(id==="explore"&&!$("#exploreGrid").children.length)explore("");if(id==="itinerary")renderItinerary(lastItinerary||loadJSON(userKey("itinerary"),null));setTimeout(()=>map?.invalidateSize(),80)}
+  function openTab(id){$$(".tab").forEach(x=>x.classList.toggle("active",x.dataset.tab===id));$$(".page").forEach(x=>x.classList.toggle("active",x.id===id));if(id==="saved")renderSaved();if(id==="profile")renderProfile();if(id==="explore"&&!$("#exploreGrid").children.length)explore("");if(id==="council"&&!$("#agentCards")?.children.length)renderCouncilShell();if(id==="itinerary")renderItinerary(lastItinerary||loadJSON(userKey("itinerary"),null));setTimeout(()=>map?.invalidateSize(),80)}
   function initTabs(){$$(".tab").forEach(x=>x.onclick=()=>openTab(x.dataset.tab))}
   function fillProfile(){
     $("#profileStart").value=memory.starting_location||"";$("#profileDays").value=memory.days||5;$("#profileGroup").value=memory.group_type||"";
@@ -133,6 +158,30 @@
   function toggleSave(p){const i=savedPlaces.findIndex(x=>x.id===p.id);i>=0?savedPlaces.splice(i,1):savedPlaces.push(p);saveJSON(userKey("savedPlaces"),savedPlaces);renderProfile()}
   function renderNearby(blocks){$("#nearbyDeck").innerHTML=blocks.map(b=>`<div class="nearby-block"><strong>${esc(b.kind||"Nearby")} near ${esc(b.place||"")}</strong><div class="nearby-list">${(b.results||[]).slice(0,8).map(x=>`<div class="nearby-item"><strong>${esc(x.name)}</strong><br><span>${esc(x.cuisine||x.kind||"")}</span></div>`).join("")||"<span>No named results returned.</span>"}</div>${b.search_url?`<a class="source-link" href="${esc(b.search_url)}" target="_blank" rel="noopener">Open live map search →</a>`:""}</div>`).join("")}
   function renderActions(actions){const btn=[];for(const a of actions){if(a.type==="train"&&a.url)btn.push(["Train schedules",a.url]);if(a.type==="ride"){if(a.uber_web_url)btn.push(["Open Uber",a.uber_web_url]);if(a.uber_app_url)btn.push(["Open Uber App",a.uber_app_url]);if(a.maps_directions_url)btn.push(["View Route",a.maps_directions_url])}if(a.type==="transport"){if(a.directions?.driving)btn.push(["Driving route",a.directions.driving]);if(a.directions?.transit)btn.push(["Transit route",a.directions.transit]);if(a.train_schedule)btn.push(["Train schedules",a.train_schedule])}}$("#actionDeck").innerHTML=btn.map(([l,u])=>`<a class="action-btn" href="${esc(u)}" target="_blank" rel="noopener">${esc(l)} →</a>`).join("")}
+  function renderCouncilShell(){const agents=[["Route Architect","Route and pacing"],["Safety Guardian","Risk and scam checks"],["Fair-Price Analyst","Budget and quote confidence"],["Culture Local","Etiquette and food"],["Eco Matchmaker","Responsible travel"]];$("#agentCards").innerHTML=agents.map(([name,role])=>`<article class="agent-card"><span>${esc(name.split(" ").map(x=>x[0]).join(""))}</span><strong>${esc(name)}</strong><p>${esc(role)}</p></article>`).join("")}
+  function renderCouncil(data){
+    $("#councilProtocolBadge").textContent=data.provider?`${data.provider}`:"A2A-inspired workflow";
+    $("#agentCards").innerHTML=(data.agents||[]).map(a=>`<article class="agent-card"><span>${esc((a.name||"AI").split(" ").map(x=>x[0]).join(""))}</span><strong>${esc(a.name)}</strong><p>${esc(a.role)}</p><small>${(a.capabilities||[]).map(esc).join(" · ")}</small></article>`).join("");
+    $("#handoffTimeline").innerHTML=(data.handoffs||[]).map(h=>`<div class="handoff-item ${h.status==="completed"?"done":""}"><b>${esc(h.from)} → ${esc(h.to)}</b><span>${esc(h.headline||h.task||h.status)}</span></div>`).join("");
+    const s=data.synthesis||{};
+    $("#councilSynthesis").classList.remove("hidden");
+    $("#councilSynthesis").innerHTML=`<span class="eyebrow">ORCHESTRATOR SYNTHESIS</span><h2>${esc(s.summary||"Council review complete.")}</h2><div class="council-next">${(s.next_steps||[]).map(x=>`<span>${esc(x)}</span>`).join("")}</div><div class="council-reasoning">${(s.agentic_reasoning||[]).map(x=>`<p>${esc(x)}</p>`).join("")}</div>`;
+    $("#councilReports").innerHTML=(data.reports||[]).map(r=>`<article class="council-report"><strong>${esc(r.agent_name)}</strong><h3>${esc(r.headline)}</h3><ul>${(r.recommendations||[]).map(x=>`<li>${esc(x)}</li>`).join("")}</ul>${(r.watchouts||[]).length?`<div class="watchout"><b>Watchouts</b>${r.watchouts.map(x=>`<span>${esc(x)}</span>`).join("")}</div>`:""}</article>`).join("");
+    if(data.itinerary){lastItinerary=data.itinerary;saveJSON(userKey("itinerary"),data.itinerary)}
+    if(data.budget)saveJSON(userKey("budget"),data.budget);
+    if(data.places?.length)renderPlaces(data.places,$("#placeDeck"));
+    const pts=[];(data.places||[]).forEach(p=>p.coordinates&&pts.push(p));(data.itinerary?.plan||[]).forEach(x=>x.coordinates&&pts.push({name:x.name,coordinates:x.coordinates}));if(pts.length)updateMap(pts,"route");
+  }
+  async function runCouncil(){
+    const input=$("#councilInput"),prompt=String(input?.value||"").trim()||"Build a smart Sri Lanka travel plan using route, safety, fair-price, culture, and responsible travel agents.";
+    readProfile();$("#councilStatus").textContent="Orchestrator is sending handoffs to specialist agents...";$("#runCouncilBtn").disabled=true;openTab("council");
+    try{
+      const data=API?await apiFetch("/api/agent/council",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({prompt,memory})},70000):await staticCouncil(prompt);
+      renderCouncil(data);$("#councilStatus").textContent="Agent Council complete. Review the synthesis and specialist reports below.";
+    }catch(e){
+      const data=await staticCouncil(prompt);renderCouncil(data);$("#councilStatus").textContent="Live council is unavailable, so Sancharakaya used the offline specialist council.";
+    }finally{$("#runCouncilBtn").disabled=false}
+  }
   function markerIcon(index,type="popular"){return L.divIcon({className:"",html:`<div class="map-marker ${type}"><span>${index}</span></div>`,iconSize:[30,30],iconAnchor:[15,30],popupAnchor:[0,-25]})}
   function mapPopup(p,index){const mapUrl=`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.name+", Sri Lanka")}`;return `<div class="map-popup"><h3>${index}. ${esc(p.name)}</h3><p>${esc(p.region||"Sri Lanka")} · ${esc(p.best_time_of_day||"Plan with local timing")}</p><p>${esc(p.summary||"Popular Sri Lanka travel stop.")}</p><a href="${mapUrl}" target="_blank" rel="noopener">Open map</a><button type="button" data-popup-weather="${esc(p.name)}">Weather</button></div>`}
   function renderMapList(items){const el=$("#mapPlaceList");if(!el)return;el.innerHTML=items.slice(0,16).map((p,i)=>`<button class="map-place-item" data-map-place="${esc(p.id||p.name)}" type="button"><span class="map-rank">${i+1}</span><span><strong>${esc(p.name)}</strong><span>${esc(p.region||"Sri Lanka")}</span></span><small>${p.hidden_gem?"Hidden":"Popular"}</small></button>`).join("");el.querySelectorAll("[data-map-place]").forEach(b=>b.onclick=()=>focusMapPlace(b.dataset.mapPlace))}
@@ -153,10 +202,11 @@
     $$(".quick-prompts [data-prompt]").forEach(b=>b.onclick=()=>sendChat(b.dataset.prompt));
     $("#exploreBtn").onclick=()=>explore($("#exploreInput").value.trim());$("#exploreInput").onkeydown=e=>e.key==="Enter"&&explore(e.currentTarget.value.trim());
     $("#generatePlanBtn").onclick=generatePlan;$("#shareTripBtn").onclick=shareTrip;$("#printTripBtn").onclick=()=>window.print();
+    $("#runCouncilBtn").onclick=runCouncil;$("#councilInput").onkeydown=e=>{if(e.key==="Enter"&&(e.ctrlKey||e.metaKey))runCouncil()};
     $("#clearSavedBtn").onclick=()=>{savedPlaces=[];saveJSON(userKey("savedPlaces"),savedPlaces);renderSaved();renderProfile()};
   }
   function restoreChat(){if(chatHistory.length)chatHistory.slice(-8).forEach(x=>addMessage(x.role==="user"?"user":"bot",x.content));else addMessage("bot","Ayubowan! I’m Sancharakaya. Tell me what kind of Sri Lanka trip you want — I’ll remember your preferences and use grounded tools when I need facts or live data.")}
   function serviceWorker(){if("serviceWorker"in navigator&&location.protocol.startsWith("http"))navigator.serviceWorker.register("sw.js").catch(()=>{})}
-  async function init(){initTheme();initTabs();bindProfile();fillProfile();bindUI();loadShared();initMap();serviceWorker();initAuth();await checkBackend();setTimeout(()=>$("#preloader").classList.add("hide"),450)}
+  async function init(){initTheme();initTabs();bindProfile();fillProfile();bindUI();loadShared();initMap();serviceWorker();initAuth();const hash=(location.hash||"").replace("#","");if(["guide","council","itinerary","explore","saved","profile"].includes(hash))openTab(hash);await checkBackend();setTimeout(()=>$("#preloader").classList.add("hide"),450)}
   init();
 })();

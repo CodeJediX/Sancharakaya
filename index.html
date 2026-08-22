@@ -111,6 +111,10 @@
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.4 8.4 0 01-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.4 8.4 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
         Virtual Assistant
       </button>
+      <button class="nav-btn" data-tab="agentic">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4"/><path d="M12 17v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M3 12h4"/><path d="M17 12h4"/><circle cx="12" cy="12" r="4"/></svg>
+        Agent Council
+      </button>
       <button class="nav-btn" data-tab="prices">
         <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41L11 3.83A2 2 0 009.62 3H4a1 1 0 00-1 1v5.62a2 2 0 00.59 1.41l9.58 9.58a2 2 0 002.82 0l4.6-4.6a2 2 0 000-2.82z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>
         Fair-Price Guide
@@ -288,6 +292,36 @@
         </p>
       </div>
     </section>
+
+    <!-- AGENTIC -->
+    <section id="agentic" class="hidden">
+      <div class="panel agentic-panel">
+        <div class="section-heading agentic-heading">
+          <div>
+            <span class="eyebrow">Agent-to-agent travel planning</span>
+            <h2>Sancharakaya Agent Council</h2>
+            <p class="muted">
+              A coordinated travel council where specialist agents review route logic, safety, fair prices,
+              culture, and responsible travel before the orchestrator gives the final recommendation.
+            </p>
+          </div>
+          <a class="btn" href="virtual-assistant/index.html#council" target="_blank" rel="noopener">Open Agent Council</a>
+        </div>
+
+        <div class="agentic-flow">
+          <article><span>01</span><strong>Orchestrator</strong><p>Receives the trip goal and sends structured tasks to specialist agents.</p></article>
+          <article><span>02</span><strong>Specialists</strong><p>Route, safety, fair-price, culture, and eco agents each return focused advice.</p></article>
+          <article><span>03</span><strong>Handoffs</strong><p>The interface shows transparent agent-to-agent messages and completed reports.</p></article>
+          <article><span>04</span><strong>Synthesis</strong><p>Sancharakaya combines the reports into one traveler-ready action plan.</p></article>
+        </div>
+
+        <div class="agentic-note">
+          <strong>Built for the next phase:</strong>
+          <span>This uses an A2A-inspired protocol shape today, with agent cards and handoff messages. External A2A federation and MCP tool servers can be added later without changing the traveler experience.</span>
+        </div>
+      </div>
+    </section>
+
     <!-- PRICES -->
     <section id="prices" class="hidden">
       <div class="panel price-guide-panel">

@@ -4,7 +4,9 @@
 
   window.SANCHARAKAYA_CONFIG = {
     // Local development runs the Node/Gemini backend on this port.
-    LOCAL_API_BASE_URL: "http://localhost:8787",
+    LOCAL_API_BASE_URL: window.location.port === "8787"
+      ? window.location.origin
+      : "http://localhost:8787",
 
     // Production Gemini backend. GitHub Pages must never call a visitor's localhost.
     PRODUCTION_API_BASE_URL: "https://sancharakaya-kx2n.vercel.app",

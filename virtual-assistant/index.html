@@ -34,6 +34,7 @@
 
   <nav class="tabs">
     <button class="tab active" data-tab="guide">AI Guide</button>
+    <button class="tab" data-tab="council">Agent Council</button>
     <button class="tab" data-tab="itinerary">Itinerary</button>
     <button class="tab" data-tab="explore">Explore</button>
     <button class="tab" data-tab="saved">Saved</button>
@@ -145,6 +146,31 @@
           <div id="mapPlaceList" class="map-place-list"></div>
           <div class="trust-box"><strong>Grounded guidance</strong><p>Destination facts come from curated Sri Lanka records. Weather and nearby listings use live sources when available. Always verify official fares, opening hours, tickets, and travel rules before departure.</p></div>
         </aside>
+      </div>
+    </section>
+
+    <section id="council" class="page">
+      <div class="section-shell council-shell">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">AGENT-TO-AGENT PLANNING</span>
+            <h1>Sancharakaya Agent Council</h1>
+          </div>
+          <span id="councilProtocolBadge" class="status-badge ok">A2A-inspired workflow</span>
+        </div>
+        <p class="section-lede">Ask the council for a travel decision and the orchestrator will hand the task to specialist agents for route design, safety, fair prices, culture, and responsible travel.</p>
+        <div class="council-input-card glass">
+          <textarea id="councilInput" rows="3" placeholder="Example: Build a 6-day Sri Lanka plan for a couple who loves culture, wildlife, beaches, and fair-price travel."></textarea>
+          <div class="composer-actions">
+            <span class="composer-hint">Specialist agents share structured handoffs before the final recommendation.</span>
+            <button id="runCouncilBtn" class="primary-btn" type="button">Run Agent Council</button>
+          </div>
+        </div>
+        <div id="councilStatus" class="council-status">Ready for a multi-agent travel review.</div>
+        <div id="agentCards" class="agent-card-grid"></div>
+        <div id="handoffTimeline" class="handoff-timeline"></div>
+        <div id="councilSynthesis" class="council-synthesis hidden"></div>
+        <div id="councilReports" class="council-report-grid"></div>
       </div>
     </section>
 

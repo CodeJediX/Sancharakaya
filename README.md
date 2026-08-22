@@ -15,6 +15,8 @@
 - **Supabase email confirmation** with a branded Sancharakaya signup email template.
 - **User profile dashboard** with account identity, trip stats, chat stats, and achievement badges.
 - **AI Virtual Assistant** for Sri Lanka travel questions, routes, safety, weather prompts, fair prices, and saved trip context.
+- **Agent Council** with an A2A-inspired orchestrator and specialist agents for route planning, safety, fair-price analysis, culture, and responsible travel.
+- **Transparent agent handoffs** showing which specialist reviewed the request and how each recommendation shaped the final synthesis.
 - **New chats, previous chats, and delete chat** functions in the assistant.
 - **Interactive trip map** with popular tourist destinations, category filters, saved places, and map popups.
 - **Fair-Price Guide** with quote checking, category filters, and traveler-friendly advice.
@@ -120,6 +122,41 @@ GOOGLE_MAPS_API_KEY=your-server-side-key
 ALLOWED_ORIGIN=http://localhost:8080,https://codejedix.github.io
 RATE_LIMIT_PER_MINUTE=60
 ```
+
+## Agentic Architecture
+
+The Agent Council is implemented as a production-safe first step toward agent-to-agent travel planning.
+
+Current protocol shape:
+
+```text
+Traveler request
+  -> Sancharakaya Orchestrator
+  -> Route Architect
+  -> Safety Guardian
+  -> Fair-Price Analyst
+  -> Culture Local
+  -> Eco Matchmaker
+  -> Orchestrator synthesis
+```
+
+The backend exposes:
+
+```text
+POST /api/agent/council
+```
+
+The response includes:
+
+- Agent cards
+- Handoff messages
+- Specialist reports
+- Orchestrator synthesis
+- Grounded places
+- Itinerary preview
+- Budget envelope when available
+
+This is A2A-inspired today: it uses structured agent cards and handoff messages inside the existing Vercel/Gemini backend. External A2A federation and MCP tool servers can be added as a later phase.
 
 ## Security Notes
 

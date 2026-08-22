@@ -789,4 +789,346 @@ async function runAgent({ messages = [], memory = {} }) {
   };
 }
 
-module.exports = { runAgent, resolveModel, mergeMemory, fetchAvailableModels };
+const COUNCIL_AGENTS = [
+  {
+    id: "route_architect",
+    name: "Route Architect",
+    role: "Turns traveler goals into a practical Sri Lanka route.",
+    focus: "itinerary fit, pacing, regions, route logic"
+  },
+  {
+    id: "safety_guardian",
+    name: "Safety Guardian",
+    role: "Checks safety, scams, emergency context, and caution points.",
+    focus: "risk signals, safe next steps, emergency awareness"
+  },
+  {
+    id: "fair_price_analyst",
+    name: "Fair-Price Analyst",
+    role: "Keeps budget, quote confidence, and overcharge awareness visible.",
+    focus: "budget envelope, cost assumptions, price caution"
+  },
+  {
+    id: "culture_local",
+    name: "Culture Local",
+    role: "Adds etiquette, heritage, food, and local context.",
+    focus: "culture, religion, manners, food, timing"
+  },
+  {
+    id: "eco_matchmaker",
+    name: "Eco Matchmaker",
+    role: "Finds responsible, community-friendly, lower-impact choices.",
+    focus: "sustainability, hidden gems, wildlife ethics"
+  }
+];
+
+function agentCard(agent) {
+  return {
+    protocol: "sancharakaya-a2a-card/v1",
+    id: agent.id,
+    name: agent.name,
+    role: agent.role,
+    capabilities: agent.focus.split(",").map(item => item.trim())
+  };
+}
+
+function councilPrompt({ agent, prompt, memory, grounded }) {
+  return `You are ${agent.name}, one specialist agent in the Sancharakaya travel council.
+
+ROLE:
+${agent.role}
+
+FOCUS:
+${agent.focus}
+
+TRAVELER REQUEST:
+${prompt}
+
+SESSION MEMORY:
+${JSON.stringify(memory || {}, null, 2)}
+
+GROUNDED CONTEXT:
+${JSON.stringify(grounded || {}, null, 2)}
+
+Return concise JSON only:
+{
+  "headline": "one short specialist conclusion",
+  "confidence": 0.0,
+  "recommendations": ["3-5 practical bullets"],
+  "watchouts": ["0-3 caution bullets"],
+  "handoff_note": "one sentence for the orchestrator"
+}`;
+}
+
+function synthesisPrompt({ prompt, memory, grounded, specialistReports }) {
+  return `You are the Sancharakaya Orchestrator coordinating specialist travel agents.
+
+Create a final traveler-ready answer from the specialist reports.
+
+TRAVELER REQUEST:
+${prompt}
+
+SESSION MEMORY:
+${JSON.stringify(memory || {}, null, 2)}
+
+GROUNDED CONTEXT:
+${JSON.stringify(grounded || {}, null, 2)}
+
+SPECIALIST REPORTS:
+${JSON.stringify(specialistReports || [], null, 2)}
+
+Return concise JSON only:
+{
+  "summary": "warm final recommendation",
+  "next_steps": ["3-5 actions"],
+  "agentic_reasoning": ["3-5 short notes explaining which agents influenced the answer"],
+  "confidence": 0.0
+}`;
+}
+
+function extractJson(text = "") {
+  const raw = String(text || "").trim();
+  const fenced = raw.match(/```(?:json)?\s*([\s\S]*?)```/i)?.[1];
+  const candidate = fenced || raw.match(/\{[\s\S]*\}/)?.[0] || raw;
+  try {
+    return JSON.parse(candidate);
+  } catch {
+    return null;
+  }
+}
+
+async function generateJsonWithGemini(prompt, memory, preferredModel = null) {
+  const availableModels = await fetchAvailableModels();
+  const contents = [{ role: "user", parts: [{ text: prompt }] }];
+  const result = await callGeminiAcrossModels(availableModels, contents, memory, preferredModel);
+  const candidate = extractCandidate(result.data);
+  const text = extractText(candidate.content?.parts || []);
+  return {
+    json: extractJson(text),
+    text,
+    model: result.model
+  };
+}
+
+function groundedCouncilContext(prompt, memory) {
+  const query = [prompt, ...(memory?.interests || [])].join(" ");
+  const placeResult = searchPlaces({
+    query,
+    interests: memory?.interests || [],
+    hidden_gems: Boolean(memory?.hidden_gems),
+    limit: 8
+  });
+  const days = Number(memory?.days || String(prompt).match(/\b(\d{1,2})\s*day/i)?.[1] || 5);
+  const itinerary = buildItinerary({
+    days: Math.max(1, Math.min(14, days)),
+    starting_location: memory?.starting_location || "Colombo",
+    interests: memory?.interests || [],
+    hidden_gems: Boolean(memory?.hidden_gems),
+    query: prompt
+  });
+  const budget = memory?.daily_budget_lkr
+    ? budgetFromUserInput({
+      days,
+      group_size: memory?.group_size || 1,
+      daily_budget_lkr: memory.daily_budget_lkr
+    })
+    : null;
+
+  return {
+    matched_places: placeResult.matches.slice(0, 6).map(place => ({
+      id: place.id,
+      name: place.name,
+      region: place.region,
+      summary: place.summary,
+      categories: place.categories,
+      hidden_gem: place.hidden_gem
+    })),
+    itinerary_preview: itinerary,
+    budget
+  };
+}
+
+function fallbackCouncilReport(agent, grounded, prompt) {
+  const places = grounded.matched_places || [];
+  const firstPlace = places[0]?.name || "Sri Lanka";
+  const routeNames = (grounded.itinerary_preview?.plan || []).slice(0, 4).map(day => day.name);
+  const byAgent = {
+    route_architect: {
+      headline: `Build around ${routeNames.join(", ") || firstPlace}.`,
+      recommendations: [
+        "Keep the route compact enough for your trip length.",
+        "Use the itinerary preview as the main spine, then swap places based on interests.",
+        "Keep one flexible half-day for weather or transport delays."
+      ],
+      watchouts: ["Verify travel times before confirming hotels."]
+    },
+    safety_guardian: {
+      headline: "Use official counters, confirm prices, and keep emergency numbers handy.",
+      recommendations: [
+        "Confirm final LKR prices before rides or tours.",
+        "Use Police 119, ambulance 1990, Tourism Hotline 1912, and Tourist Police 011 242 1052 when needed.",
+        "Avoid pressure sales and unofficial ticket shortcuts."
+      ],
+      watchouts: ["Do not accept urgent cash-only offers without comparison."]
+    },
+    fair_price_analyst: {
+      headline: grounded.budget?.available ? "Your budget can be allocated across stays, transport, food, and activities." : "Add a daily LKR budget for tighter guidance.",
+      recommendations: [
+        "Compare quotes against the Fair-Price Guide before accepting.",
+        "Ask for inclusions, waiting time, route, and final LKR amount.",
+        "Keep a small buffer for tickets and weather-driven route changes."
+      ],
+      watchouts: ["Live prices and official fees must be verified before payment."]
+    },
+    culture_local: {
+      headline: "Plan with temple etiquette, food timing, and local rhythm in mind.",
+      recommendations: [
+        "Carry modest clothing for temples.",
+        "Start major heritage visits early to avoid heat.",
+        "Try local meals away from the most tourist-heavy frontage when practical."
+      ],
+      watchouts: ["Religious sites may require shoes and hats removed."]
+    },
+    eco_matchmaker: {
+      headline: "Balance famous highlights with responsible local experiences.",
+      recommendations: [
+        "Choose licensed local guides and community-run stops where possible.",
+        "Avoid wildlife experiences involving touching, riding, or feeding animals.",
+        "Add lesser-known places when the route still stays practical."
+      ],
+      watchouts: ["Do not overload the route just to add more places."]
+    }
+  };
+  const report = byAgent[agent.id] || byAgent.route_architect;
+  return {
+    agent_id: agent.id,
+    agent_name: agent.name,
+    headline: report.headline,
+    confidence: 0.72,
+    recommendations: report.recommendations,
+    watchouts: report.watchouts,
+    handoff_note: `${agent.name} reviewed "${prompt}" for ${agent.focus}.`
+  };
+}
+
+function fallbackSynthesis(prompt, grounded, reports) {
+  const route = (grounded.itinerary_preview?.plan || []).slice(0, 5).map(day => day.name).join(" -> ");
+  return {
+    summary: `Sancharakaya's travel council recommends a practical Sri Lanka plan${route ? ` built around ${route}` : ""}. The route should stay flexible, compare prices before payment, and balance famous highlights with responsible local choices.`,
+    next_steps: [
+      "Confirm your days, starting point, budget, and top interests.",
+      "Use the Agent Council results to refine the AI itinerary.",
+      "Check safety and fair-price guidance before accepting rides, guides, or tours.",
+      "Save the best places so the map and assistant can keep your context."
+    ],
+    agentic_reasoning: reports.map(report => `${report.agent_name}: ${report.headline}`).slice(0, 5),
+    confidence: 0.74
+  };
+}
+
+async function runAgentCouncil({ prompt = "", memory = {} }) {
+  const request = String(prompt || "").trim();
+  if (!request) {
+    const error = new Error("Agent Council requires a traveler request.");
+    error.status = 400;
+    throw error;
+  }
+
+  const stateMemory = mergeMemory({}, memory);
+  const grounded = groundedCouncilContext(request, stateMemory);
+  const handoffs = [];
+  const reports = [];
+  let activeModel = normalizeModelName(GEMINI_MODEL) || null;
+
+  for (const agent of COUNCIL_AGENTS) {
+    handoffs.push({
+      from: "sancharakaya_orchestrator",
+      to: agent.id,
+      protocol: "sancharakaya-a2a-message/v1",
+      task: `Review traveler request for ${agent.focus}`,
+      status: "sent"
+    });
+
+    let report;
+    if (GEMINI_API_KEY) {
+      try {
+        const generated = await generateJsonWithGemini(
+          councilPrompt({ agent, prompt: request, memory: stateMemory, grounded }),
+          stateMemory,
+          activeModel
+        );
+        activeModel = generated.model;
+        report = generated.json;
+      } catch (error) {
+        console.warn(`[Council] ${agent.name} fallback: ${error.message}`);
+      }
+    }
+
+    const normalized = {
+      ...fallbackCouncilReport(agent, grounded, request),
+      ...(report && typeof report === "object" ? report : {}),
+      agent_id: agent.id,
+      agent_name: agent.name
+    };
+
+    reports.push(normalized);
+    handoffs.push({
+      from: agent.id,
+      to: "sancharakaya_orchestrator",
+      protocol: "sancharakaya-a2a-message/v1",
+      status: "completed",
+      headline: normalized.headline
+    });
+  }
+
+  let synthesis;
+  if (GEMINI_API_KEY) {
+    try {
+      const generated = await generateJsonWithGemini(
+        synthesisPrompt({ prompt: request, memory: stateMemory, grounded, specialistReports: reports }),
+        stateMemory,
+        activeModel
+      );
+      activeModel = generated.model;
+      synthesis = generated.json;
+    } catch (error) {
+      console.warn(`[Council] synthesis fallback: ${error.message}`);
+    }
+  }
+
+  synthesis = {
+    ...fallbackSynthesis(request, grounded, reports),
+    ...(synthesis && typeof synthesis === "object" ? synthesis : {})
+  };
+
+  const places = await enrichPlacesWithImages(
+    (grounded.matched_places || []).map(item => getPlace(item.id)).filter(Boolean),
+    6
+  );
+
+  return {
+    protocol: {
+      name: "Sancharakaya Agent Council",
+      pattern: "A2A-inspired orchestrator with specialist agent cards and handoff messages",
+      version: "1.0.0",
+      notes: [
+        "A2A-style messages coordinate specialist agents.",
+        "MCP-style tool separation is represented by grounded destination, itinerary, budget, and safety context.",
+        "External A2A federation can be added later without changing the traveler UI."
+      ]
+    },
+    request,
+    agents: COUNCIL_AGENTS.map(agentCard),
+    handoffs,
+    reports,
+    synthesis,
+    memory: stateMemory,
+    places,
+    itinerary: grounded.itinerary_preview,
+    budget: grounded.budget,
+    model: activeModel,
+    provider: GEMINI_API_KEY ? "Google Gemini" : "Static Council Fallback"
+  };
+}
+
+module.exports = { runAgent, runAgentCouncil, resolveModel, mergeMemory, fetchAvailableModels };

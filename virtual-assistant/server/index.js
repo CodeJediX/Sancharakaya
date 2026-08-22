@@ -2,7 +2,7 @@ const http = require("node:http");
 const fs = require("node:fs");
 const path = require("node:path");
 const { PORT, ALLOWED_ORIGIN, GEMINI_API_KEY } = require("./config");
-const { runAgent, resolveModel } = require("./agent");
+const { runAgent, runAgentCouncil, resolveModel } = require("./agent");
 const { searchPlaces, getPlace, buildItinerary, budgetFromUserInput, places } = require("./kb");
 const { getWeather, enrichPlacesWithImages } = require("./integrations");
 
@@ -218,6 +218,21 @@ async function handleRequest(req, res) {
       });
       const status = result.error ? (result.retryable ? 503 : 500) : 200;
       sendJson(req, res, status, result);
+      return;
+    }
+
+    if (req.method === "POST" && url.pathname === "/api/agent/council") {
+      const body = await readJson(req);
+      const prompt = String(body.prompt || "").trim();
+      if (!prompt) {
+        sendJson(req, res, 400, { error: "Agent Council requires a traveler request." });
+        return;
+      }
+      const result = await runAgentCouncil({
+        prompt,
+        memory: body.memory && typeof body.memory === "object" ? body.memory : {}
+      });
+      sendJson(req, res, 200, result);
       return;
     }
 
